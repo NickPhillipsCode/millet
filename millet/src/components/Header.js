@@ -1,11 +1,14 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
     return (
         <header className="header">
             <div className="logo">
-                <h2>millet</h2>
+                <Link to="/" style={{ textDecoration: 'none', color: '#F57EB3' }}>
+                    <h2>millet</h2>
+                </Link>
             </div>
             <nav>
                 <ul>
@@ -16,7 +19,9 @@ const Header = () => {
             </nav>
             <div className="auth-buttons">
                 <button className="login">Log In</button>
-                <button className="signup">Sign Up</button>
+                <Link to="/signup">
+                    <button className="signup">Sign Up</button>
+                </Link>
             </div>
         </header>
     );
