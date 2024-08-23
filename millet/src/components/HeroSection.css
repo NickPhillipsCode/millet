@@ -1,0 +1,68 @@
+/* src/components/HeroSection.css */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, var(--secondary-color), #f4b4d5);
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    color: var(--primary-contrast); /* Use the primary contrast color */
+    max-width: 100%; /* Allow it to scale with the viewport */
+}
+
+
+.hero-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+.subheading, .hero h1, .hero p, .hero-buttons {
+    position: relative;
+    z-index: 2; /* Ensure the text appears above the SVG */
+}
+
+.subheading {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color); /* Use the text color */
+    margin-bottom: 2px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Use the primary color */
+    line-height: 1.2; /* Adjust line-height for better spacing */
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: var(--text-color); /* Use the text color */
+}
+
+.hero-buttons .browse-btn,
+.hero-buttons .get-started-btn {
+    padding: 15px 30px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px; /* Curved buttons */
+}
+
+.browse-btn {
+    background-color: var(--primary-color); /* White */
+    color: var(--primary-contrast); /* Black */
+    border: 1px solid var(--primary-color); /* Black border */
+}
+
+.get-started-btn {
+    background-color: var(--primary-color); /* Black */
+    color: var(--primary-contrast); /* White */
+}

@@ -1,5 +1,21 @@
+:root {
+  --primary-color: #000000; /* Primary - Black */
+  --primary-contrast: #FFFFFF; /* Primary contrast - White */
+  --text-color: #171717; /* Text - Dark gray/Black */
+  --surface-color: #F5F5F5; /* Surface - Light gray */
+  --background-color: #FFFFFF; /* Background - White */
+  --destructive-color: #B60909; /* Destructive - Red */
+  --success-color: #0C9C35; /* Success - Green */
+  --alert-color: #9F6D0A; /* Alert - Brown */
+  --borders-color: #E5E5E5; /* Borders - Light gray */
+  --charcoal-color: #616161; /* Charcoal - Medium gray */
+  --secondary-color: #F57EB3; /* Secondary - Pink */
+}
+
+
 .App {
-  text-align: center;
+  max-width: 100%; /* Allow it to scale with the viewport */
+  margin: 0 auto; /* Center the container */
 }
 
 .App-logo {
@@ -23,6 +39,11 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 
 .App-link {
   color: #61dafb;

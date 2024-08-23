@@ -1,0 +1,69 @@
+/* src/components/Header.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Padding from the edges of the screen */
+    background-color: #000;
+    box-shadow: 0px 4px 2px -2px gray;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 24px;
+    color: #F57EB3;
+    font-weight: normal;
+    text-align: left;
+    flex: 1; /* Takes equal space as auth-buttons */
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left */
+    padding-left: 20px; /* Same padding as the auth-buttons */
+}
+
+nav {
+    flex-grow: 2;
+    display: flex;
+    justify-content: center; /* Center the navigation links */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: normal;
+}
+
+.auth-buttons {
+    flex: 1; /* Takes equal space as logo */
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    align-items: center;
+    padding-right: 20px; /* Same padding as the logo */
+}
+
+.auth-buttons button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.login {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+}
+
+.signup {
+    background-color:var(--secondary-color);
+    color: #000;
+}
