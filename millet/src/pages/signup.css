@@ -76,11 +76,6 @@
     margin-right: 0; /* Remove right margin from the last button */
 }
 
-.signup-buttons button:hover {
-    background-color: #333;
-    color: #fff;
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -124,6 +119,28 @@ form input[type="password"] {
     max-width: 400px;
     box-sizing: border-box;
 }
+
+.brand-btn, .influencer-btn {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.brand-btn.selected, .influencer-btn.selected {
+    background-color: #f57eb3; /* Your preferred highlight color */
+    color: #fff;
+    border: 1px solid #f57eb3; /* Optional: match the border color */
+}
+
+.signup-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
