@@ -14,7 +14,6 @@ const SignUpPage = () => {
     }, []);
 
     const handleUserTypeSelection = (type) => {
-        console.log(`User type selected: ${type}`);
         setUserType(type);
     };
 
@@ -24,7 +23,6 @@ const SignUpPage = () => {
             ...formData,
             [name]: inputType === 'checkbox' ? checked : value,
         });
-        console.log(`Form data updated: ${name} = ${inputType === 'checkbox' ? checked : value}`);
     };
 
     const handleSubmit = async (e) => {
@@ -34,8 +32,6 @@ const SignUpPage = () => {
             alert("Please select if you're a brand or influencer.");
             return;
         }
-
-        console.log('Submitting form data:', { ...formData, userType });
     
         try {
             const response = await fetch('http://localhost:5000/signup', {
@@ -45,23 +41,27 @@ const SignUpPage = () => {
                 },
                 body: JSON.stringify({ ...formData, userType }),
             });
-
-            console.log('Server response:', response);
     
             if (response.ok) {
-                alert('Sign up successful!');
-                // Redirect or clear form as needed
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+    
+                // Redirect based on userType
+                if (userType === 'brand') {
+                    window.location.href = '/brand-settings';
+                } else {
+                    window.location.href = '/influencer-settings'; // if you have a similar page for influencers
+                }
             } else {
                 const errorData = await response.json();
-                console.error('Error response data:', errorData);
                 alert(`Sign up failed. Error: ${errorData.message || 'Unknown error'}`);
             }
         } catch (error) {
-            console.error('Error during fetch:', error);
             alert(`Sign up failed. Error: ${error.message}`);
         }
     };
     
+
     return (
         <div className="signup-container">
             <div className="signup-left">
