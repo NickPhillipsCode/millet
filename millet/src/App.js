@@ -1,30 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import SignUpPage from './pages/signup';
 import BrandSettings from './pages/BrandSettings';
 import ProfilePage from './pages/Profile';
+import Footer from './components/Footer'; // Import the Footer component
 import './App.css';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsAuthenticated(!!token);
+    }, []);
+
     const handleLogout = () => {
+        localStorage.removeItem('token');
         setIsAuthenticated(false);
     };
 
     return (
         <Router>
             <div className="App">
-                <Header isAuthenticated={isAuthenticated} />
+                {/* Only render Header on routes other than /signup */}
                 <Routes>
-                    <Route path="/" element={<HeroSection />} />
-                    <Route path="/signup" element={<SignUpPage />} />
-                    <Route path="/brand-settings" element={<BrandSettings />} />
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Header isAuthenticated={isAuthenticated} />
+                                <HeroSection />
+                                <Footer />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/signup"
+                        element={<SignUpPage />}
+                    />
+                    <Route
+                        path="/brand-settings"
+                        element={
+                            <>
+                                <Header isAuthenticated={isAuthenticated} />
+                                <BrandSettings />
+                                <Footer />
+                            </>
+                        }
+                    />
                     <Route
                         path="/profile"
-                        element={<ProfilePage onLogout={handleLogout} />}
+                        element={
+                            <>
+                                <Header isAuthenticated={isAuthenticated} />
+                                <ProfilePage onLogout={handleLogout} />
+                                <Footer />
+                            </>
+                        }
                     />
                 </Routes>
             </div>

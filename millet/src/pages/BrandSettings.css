@@ -1,4 +1,3 @@
-/* src/pages/BrandSettings.css */
 .settings-container {
     padding: 20px;
     max-width: 1000px;
@@ -19,6 +18,8 @@ p {
 .settings-form {
     display: flex;
     gap: 40px;
+    flex-wrap: wrap; /* Allows sections to wrap if the screen is narrow */
+    justify-content: space-between;
 }
 
 .details-section {
@@ -31,6 +32,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 300px; /* Ensures that the sections don't get too small */
 }
 
 h3 {
@@ -66,6 +68,7 @@ textarea {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 textarea {
@@ -74,18 +77,38 @@ textarea {
 }
 
 button {
-    background: #000;
+    background: #000; /* Ensure the button background is black */
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
+    align-self: flex-end; /* Aligns button to the right in the form */
 }
 
 button[type="button"] {
     background: none;
     color: #000;
     margin-left: 10px;
+}
+
+.save-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centers the save button */
+    margin-top: 20px;
+}
+
+.save-button {
+    padding: 18px 36px; /* Increased padding for larger button */
+    background-color: #000 !important; /* Force the background color to black */
+    color: #ffffff !important;; /* Ensure text color is white */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px; /* Increased font size for better readability */
+    text-align: center;
+    width: 200px; /* Make the button wider */
 }

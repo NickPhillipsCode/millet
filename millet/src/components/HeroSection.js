@@ -1,10 +1,10 @@
 import React from 'react';
 import './HeroSection.css'; // For styling
+import heroImage from '../assets/images/hero-image.png'; // Update with your actual image name
 
 const HeroSection = () => {
     return (
-        <section className="hero">
-
+        <section className="hero" style={{ backgroundImage: `url(${heroImage})` }}>
             <h2 className="subheading">LIVE INFLUENCER MARKETPLACE</h2>
             <h1>Take live shopping to<br /> the next level</h1>
             <p>Are you a brand owner or an influencer looking for live collaborations?<br />Sign up to join America’s largest live-focused network.</p>

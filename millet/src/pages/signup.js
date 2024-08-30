@@ -1,3 +1,4 @@
+// src/pages/SignUpPage.js
 import React, { useState, useEffect } from 'react';
 import './signup.css';
 
@@ -6,6 +7,7 @@ const SignUpPage = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
+        companyName: '', // Include companyName in the form data
         agreedToTerms: false,
     });
 
@@ -46,11 +48,10 @@ const SignUpPage = () => {
                 const data = await response.json();
                 localStorage.setItem('token', data.token);
     
-                // Redirect based on userType
                 if (userType === 'brand') {
                     window.location.href = '/brand-settings';
                 } else {
-                    window.location.href = '/influencer-settings'; // if you have a similar page for influencers
+                    window.location.href = '/influencer-settings';
                 }
             } else {
                 const errorData = await response.json();
@@ -60,13 +61,12 @@ const SignUpPage = () => {
             alert(`Sign up failed. Error: ${error.message}`);
         }
     };
-    
 
     return (
         <div className="signup-container">
             <div className="signup-left">
                 <h1>Millet</h1>
-                <p>Join America's largest influencer marketplace for live shopping.</p>
+                <p>Join America's largest influencer marketplace for <br /> live shopping.</p>
             </div>
             <div className="signup-right">
                 <h2>Create an account</h2>
@@ -88,6 +88,16 @@ const SignUpPage = () => {
                     </button>
                 </div>
                 <form onSubmit={handleSubmit}>
+                    {userType === 'brand' && (
+                        <input
+                            type="text"
+                            name="companyName"
+                            placeholder="Company Name"
+                            value={formData.companyName}
+                            onChange={handleChange}
+                            required
+                        />
+                    )}
                     <input
                         type="email"
                         name="email"

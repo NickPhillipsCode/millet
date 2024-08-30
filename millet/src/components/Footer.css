@@ -1,0 +1,54 @@
+/* Footer.css */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Same padding as the header */
+    background-color: #000;
+    height: 120px; /* As per your design */
+    margin: 0 auto;
+    color: #fff;
+}
+
+.footer-logo {
+    font-size: 24px;
+    color: #F57EB3;
+    font-weight: normal;
+    text-align: left;
+    flex: 1; /* Takes equal space as footer-links */
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left */
+    padding-left: 20px; /* Same padding as the header logo */
+}
+
+.footer-links {
+    flex-grow: 2;
+    display: flex;
+    justify-content: center; /* Center the footer links */
+    gap: 20px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: normal;
+}
+
+.footer-legal {
+    flex: 1; /* Takes equal space as footer-logo */
+    display: flex;
+    justify-content: flex-end; /* Aligns content to the right */
+    align-items: center;
+    padding-right: 20px; /* Same padding as the header */
+}
+
+.footer-legal a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.footer-logo-img {
+    height: 100px; /* Adjust the height to fit your design */
+    width: auto;
+}

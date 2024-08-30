@@ -4,7 +4,7 @@
     align-items: center;
     padding: 0 20px; /* Padding from the edges of the screen */
     background-color: #000;
-    height: 80px;
+    height: 95px;
     margin: 0 auto;
 }
 
@@ -78,3 +78,9 @@ nav ul li a {
     fill: #ffffff; /* Icon color */
     cursor: pointer;
 }
+
+.logo-img {
+    height: 100px; /* Adjust the height to fit your design */
+    width: auto;
+}
+
