@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import logo from '../assets/images/millet_logo.png'; // Import the logo image
 
 const Header = ({ isAuthenticated }) => {
     return (
         <header className="header">
             <div className="logo">
-                <Link to="/" style={{ textDecoration: 'none', color: '#F57EB3' }}>
-                    <h2>millet</h2>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <img src={logo} alt="millet logo" className="logo-img" /> {/* Add the logo image */}
                 </Link>
             </div>
             <nav>

@@ -1,15 +1,17 @@
-/* src/components/signup.css */
+@import url('https://fonts.googleapis.com/css2?family=WIP:wght@400;700&display=swap');
+
 .signup-container {
     display: flex;
     height: 100vh;
-    margin: 0; /* Remove any default margin */
-    padding: 0; /* Remove any default padding */
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'WIP', sans-serif; /* Apply WIP font */
 }
 
 .signup-left {
     flex: 1;
-    background: linear-gradient(135deg, var(--secondary-color), #f4b4d5); /* Pink gradient background */
+    background: linear-gradient(135deg, rgba(245, 126, 179, 0.8), rgba(244, 180, 213, 0.8)), url('../assets/images/hero-image.png') no-repeat center center/cover;
     color: #000;
     display: flex;
     flex-direction: column;
@@ -17,13 +19,17 @@
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    min-width: 50%; /* Ensure it takes at least 50% of the width */
+    min-width: 50%;
+}
+
+.signup-left h1 {
+    font-size: 65px;
 }
 
 .signup-left h1, .signup-left p {
     text-align: center;
     margin-bottom: 20px;
-    color: #000; /* Ensure text is visible on the pink background */
+    color: #000;
 }
 
 .signup-right {
@@ -34,22 +40,24 @@
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    min-width: 50%; /* Ensure it takes at least 50% of the width */
+    min-width: 50%;
 }
 
 .signup-right h2 {
     font-size: 32px;
     margin-bottom: 20px;
+    font-weight: 700; /* Bold font for heading */
 }
 
 .signup-right p {
     font-size: 16px;
     margin-bottom: 20px;
+    font-weight: 400; /* Regular font for paragraph */
 }
 
 .signup-buttons {
     display: flex;
-    justify-content: space-between; /* Ensure buttons are on the same line and spaced out */
+    justify-content: space-between;
     width: 100%;
     max-width: 400px;
     margin-bottom: 20px;
@@ -60,20 +68,20 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    border: 2px solid #333; /* Outline for the buttons */
+    border: 2px solid #333;
     background-color: transparent;
     color: #333;
     transition: background-color 0.3s ease, color 0.3s ease;
-    flex: 1; /* Make buttons take equal space */
-    margin: 0 10px; /* Add some spacing between the buttons */
+    flex: 1;
+    margin: 0 10px;
 }
 
 .signup-buttons button:first-child {
-    margin-left: 0; /* Remove left margin from the first button */
+    margin-left: 0;
 }
 
 .signup-buttons button:last-child {
-    margin-right: 0; /* Remove right margin from the last button */
+    margin-right: 0;
 }
 
 form {
@@ -86,7 +94,8 @@ form {
 }
 
 form input[type="email"],
-form input[type="password"] {
+form input[type="password"],
+form input[type="text"] {
     width: 100%;
     padding: 15px;
     margin-bottom: 20px;
@@ -130,37 +139,30 @@ form input[type="password"] {
 }
 
 .brand-btn.selected, .influencer-btn.selected {
-    background-color: #f57eb3; /* Your preferred highlight color */
+    background-color: #f57eb3;
     color: #fff;
-    border: 1px solid #f57eb3; /* Optional: match the border color */
+    border: 1px solid #f57eb3;
 }
-
-.signup-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .signup-container {
-        flex-direction: column; /* Stack the columns vertically on smaller screens */
-        height: auto; /* Let the height be determined by content */
+        flex-direction: column;
+        height: auto;
     }
 
     .signup-left, .signup-right {
-        flex: 1 1 100%; /* Make each section take full width */
-        max-width: 100%; /* Ensure the content doesn't exceed the screen width */
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 
     .signup-buttons {
-        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        flex-direction: column;
         width: 100%;
         max-width: 100%;
     }
 
     .signup-buttons button {
-        margin: 10px 0; /* Adjust margins when buttons are stacked */
+        margin: 10px 0;
     }
 }

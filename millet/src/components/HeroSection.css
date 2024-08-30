@@ -1,14 +1,17 @@
+/* src/components/HeroSection.css */
+
 .hero {
     text-align: center;
     padding: 100px 20px;
-    background: linear-gradient(135deg, var(--secondary-color), #f4b4d5);
+    background: linear-gradient(135deg, rgba(245, 126, 179, 0.8), rgba(244, 180, 213, 0.8)), url('../assets/images/hero-image.png') no-repeat center center/cover;
     position: relative;
     overflow: hidden;
     margin: 0 auto;
-    color: var(--primary-contrast); /* Use the primary contrast color */
-    max-width: 100%; /* Allow it to scale with the viewport */
+    color: black; /* Set text color to black */
+    font-family: 'WIP', sans-serif; /* Set the font type to WIP */
+    max-width: 100%;
+    height: 60vh;
 }
-
 
 .hero-svg {
     position: absolute;
@@ -21,13 +24,13 @@
 
 .subheading, .hero h1, .hero p, .hero-buttons {
     position: relative;
-    z-index: 2; /* Ensure the text appears above the SVG */
+    z-index: 2;
+    color: black; /* Ensure text is black */
 }
 
 .subheading {
     font-size: 18px;
     font-weight: bold;
-    color: var(--text-color); /* Use the text color */
     margin-bottom: 2px;
 }
 
@@ -35,14 +38,12 @@
     font-size: 56px;
     margin-top: 0;
     margin-bottom: 20px;
-    color: var(--primary-color); /* Use the primary color */
-    line-height: 1.2; /* Adjust line-height for better spacing */
+    line-height: 1.2;
 }
 
 .hero p {
     font-size: 20px;
     margin-bottom: 40px;
-    color: var(--text-color); /* Use the text color */
 }
 
 .hero-buttons .browse-btn,
@@ -52,16 +53,16 @@
     margin: 0 10px;
     cursor: pointer;
     border: none;
-    border-radius: 10px; /* Curved buttons */
+    border-radius: 10px;
 }
 
 .browse-btn {
-    background-color: var(--primary-color); /* White */
-    color: var(--primary-contrast); /* Black */
-    border: 1px solid var(--primary-color); /* Black border */
+    background-color: var(--primary-color);
+    color: var(--primary-contrast);
+    border: 1px solid var(--primary-color);
 }
 
 .get-started-btn {
-    background-color: var(--primary-color); /* Black */
-    color: var(--primary-contrast); /* White */
+    background-color: var(--primary-color);
+    color: var(--primary-contrast);
 }
