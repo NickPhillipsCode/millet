@@ -5,7 +5,8 @@ import HeroSection from './components/HeroSection';
 import SignUpPage from './pages/signup';
 import BrandSettings from './pages/BrandSettings';
 import ProfilePage from './pages/Profile';
-import Footer from './components/Footer'; // Import the Footer component
+import InfluenceSettings from './pages/InfluenceSettings'; // Import the InfluenceSettings component
+import Footer from './components/Footer'; 
 import './App.css';
 
 function App() {
@@ -46,6 +47,16 @@ function App() {
                             <>
                                 <Header isAuthenticated={isAuthenticated} />
                                 <BrandSettings />
+                                <Footer />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/influence-settings"
+                        element={
+                            <>
+                                <Header isAuthenticated={isAuthenticated} />
+                                <InfluenceSettings />
                                 <Footer />
                             </>
                         }
