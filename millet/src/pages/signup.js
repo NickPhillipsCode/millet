@@ -51,7 +51,7 @@ const SignUpPage = () => {
                 if (userType === 'brand') {
                     window.location.href = '/brand-settings';
                 } else if (userType === 'influencer') {
-                    window.location.href = '/influence-settings';
+                    window.location.href = '/influencer-settings';
                 }
             } else {
                 const errorData = await response.json();

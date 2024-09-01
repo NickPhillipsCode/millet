@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore .env file
+.env
+
+# Ignore server.js file
+server.js
+.env
+server.js

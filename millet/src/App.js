@@ -4,9 +4,9 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import SignUpPage from './pages/signup';
 import BrandSettings from './pages/BrandSettings';
+import InfluencerSettings from './pages/InfluencerSettings'; // Import the InfluencerSettings component
 import ProfilePage from './pages/Profile';
-import InfluenceSettings from './pages/InfluenceSettings'; // Import the InfluenceSettings component
-import Footer from './components/Footer'; 
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -25,7 +25,6 @@ function App() {
     return (
         <Router>
             <div className="App">
-                {/* Only render Header on routes other than /signup */}
                 <Routes>
                     <Route
                         path="/"
@@ -52,11 +51,12 @@ function App() {
                         }
                     />
                     <Route
-                        path="/influence-settings"
+                        path="/influencer-settings"
                         element={
                             <>
                                 <Header isAuthenticated={isAuthenticated} />
-                                <InfluenceSettings />
+                                <InfluencerSettings /> {/* Render the InfluencerSettings component */}
+
                                 <Footer />
                             </>
                         }
