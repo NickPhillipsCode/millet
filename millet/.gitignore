@@ -27,3 +27,5 @@ yarn-error.log*
 
 # Ignore server.js file
 server.js
+.env
+server.js
