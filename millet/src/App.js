@@ -56,6 +56,7 @@ function App() {
                             <>
                                 <Header isAuthenticated={isAuthenticated} />
                                 <InfluencerSettings /> {/* Render the InfluencerSettings component */}
+
                                 <Footer />
                             </>
                         }
