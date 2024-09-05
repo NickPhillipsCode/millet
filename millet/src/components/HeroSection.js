@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeroSection.css'; // For styling
-import heroImage from '../assets/images/hero-image.png'; // Update with your actual image name
+import heroImage from '../assets/images/hero-imageTwo.png'; // Update with your actual image name
 
 const HeroSection = () => {
     return (

@@ -43,22 +43,15 @@ function App() {
                     <Route
                         path="/brand-settings"
                         element={
-                            <>
-                                <Header isAuthenticated={isAuthenticated} />
-                                <BrandSettings />
-                                <Footer />
-                            </>
+                            // Render BrandSettings without Header and Footer
+                            <BrandSettings />
                         }
                     />
                     <Route
                         path="/influencer-settings"
                         element={
-                            <>
-                                <Header isAuthenticated={isAuthenticated} />
-                                <InfluencerSettings /> {/* Render the InfluencerSettings component */}
-
-                                <Footer />
-                            </>
+                            // Render InfluencerSettings without Header and Footer
+                            <InfluencerSettings />
                         }
                     />
                     <Route

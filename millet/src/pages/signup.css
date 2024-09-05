@@ -11,7 +11,7 @@
 
 .signup-left {
     flex: 1;
-    background: linear-gradient(135deg, rgba(245, 126, 179, 0.8), rgba(244, 180, 213, 0.8)), url('../assets/images/hero-image.png') no-repeat center center/cover;
+    background: linear-gradient(135deg, rgba(245, 126, 179, 0.8), rgba(244, 180, 213, 0.8)), url('../assets/images/hero-imageTwo.png') no-repeat center center/cover;
     color: #000;
     display: flex;
     flex-direction: column;
@@ -103,7 +103,9 @@ form input[type="text"] {
     border-radius: 5px;
     font-size: 16px;
     box-sizing: border-box;
+    background-color: transparent; /* Set background color to transparent */
 }
+
 
 .terms {
     display: flex;
