@@ -1,1 +1,7 @@
 .DS_Store
+
+# Environment variables
+.env
+
+# Server file
+server.js
