@@ -1,4 +1,3 @@
-/* Scope all styles under the .influencer-settings-container */
 .influencer-settings-container {
     max-width: 1000px; 
     margin: 0 auto;
@@ -103,4 +102,3 @@ textarea {
     align-items: center;
     justify-content: center;
 }
-

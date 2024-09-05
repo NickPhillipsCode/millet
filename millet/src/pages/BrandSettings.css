@@ -1,50 +1,43 @@
 .settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .settings-form {
     display: flex;
-    gap: 40px;
-    flex-wrap: wrap; /* Allows sections to wrap if the screen is narrow */
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .details-section {
-    flex: 1;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 300px; /* Ensures that the sections don't get too small */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
 }
 
 h3 {
     font-size: 24px;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .upload-section {
     display: flex;
-    flex-direction: column; /* Ensures elements are stacked vertically */
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .upload-photo {
@@ -56,19 +49,39 @@ h3 {
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    margin-bottom: 10px; /* Add space between the photo and logo */
+    margin-bottom: 15px;
     text-align: center;
 }
 
 input[type="text"],
-textarea {
+textarea,
+.styled-select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     font-size: 16px;
     box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.styled-select {
+    appearance: none; /* Remove default dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23999" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px 10px;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+.styled-select:focus {
+    border-color: #000;
+    background-color: #fff;
 }
 
 textarea {
@@ -77,7 +90,7 @@ textarea {
 }
 
 button {
-    background: #000; /* Ensure the button background is black */
+    background: #000;
     color: #fff;
     padding: 12px 24px;
     border: none;
@@ -85,7 +98,6 @@ button {
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
-    align-self: flex-end; /* Aligns button to the right in the form */
 }
 
 button[type="button"] {
@@ -94,21 +106,82 @@ button[type="button"] {
     margin-left: 10px;
 }
 
+button:hover {
+    background-color: #333;
+}
+
+button:disabled,
+button:disabled:hover {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+button[type="button"]:hover {
+    background: #f3f3f3;
+    color: #000;
+}
+
 .save-button-container {
     width: 100%;
     display: flex;
-    justify-content: center; /* Centers the save button */
-    margin-top: 20px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .save-button {
-    padding: 18px 36px; /* Increased padding for larger button */
-    background-color: #000 !important; /* Force the background color to black */
-    color: #ffffff !important;; /* Ensure text color is white */
+    padding: 20px 40px;
+    background-color: #000 !important;
+    color: #ffffff !important;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 18px; /* Increased font size for better readability */
+    font-size: 15px;
     text-align: center;
-    width: 200px; /* Make the button wider */
+    width: 220px;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #333 !important;
+}
+
+@media (min-width: 768px) {
+    .settings-form {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .details-section {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 767px) {
+    .settings-container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .settings-form {
+        gap: 20px;
+    }
+
+    .details-section {
+        padding: 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .save-button {
+        width: 100%;
+        font-size: 16px;
+    }
 }
