@@ -1,0 +1,116 @@
+/* Login.css */
+.login-page {
+    display: flex;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-page .login-left {
+    flex: 1;
+    background: url('../assets/images/hero-imageTwo.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.login-page .login-left h1 {
+    color: black;
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.login-page .login-left p {
+    color: black;
+    font-size: 18px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.login-page .login-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.login-page .login-right h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+    color: black;
+}
+
+.login-page .login-right p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: black;
+}
+
+.login-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-page input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    color: black;
+}
+
+/* Login button styles */
+.login-page button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-page button:hover {
+    background-color: #333;
+    color: white;
+}
+
+.login-page .forgot-password {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login-page .forgot-password a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Sign Up link styles */
+.login-page .signup-prompt a {
+    color: blue;
+    text-decoration: underline;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Visited state for the Sign Up link */
+.login-page .signup-prompt a:visited {
+    color: purple; /* Change the color to purple when the link has been visited */
+}
+

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import SignUpPage from './pages/signup';
 import BrandSettings from './pages/BrandSettings';
-import InfluencerSettings from './pages/InfluencerSettings'; // Import the InfluencerSettings component
+import InfluencerSettings from './pages/InfluencerSettings';
 import ProfilePage from './pages/Profile';
 import Footer from './components/Footer';
+import LoginPage from './pages/Login';
 import './App.css';
 
 function App() {
@@ -37,31 +38,57 @@ function App() {
                         }
                     />
                     <Route
+                        path="/login"
+                        element={
+                            isAuthenticated ? (
+                                <Navigate to="/profile" />
+                            ) : (
+                                <LoginPage setIsAuthenticated={setIsAuthenticated} />
+                            )
+                        }
+                    />
+                    <Route
                         path="/signup"
-                        element={<SignUpPage />}
+                        element={
+                            isAuthenticated ? (
+                                <Navigate to="/profile" />
+                            ) : (
+                                <SignUpPage />
+                            )
+                        }
                     />
                     <Route
                         path="/brand-settings"
                         element={
-                            // Render BrandSettings without Header and Footer
-                            <BrandSettings />
+                            isAuthenticated ? (
+                                <BrandSettings />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
                         }
                     />
                     <Route
                         path="/influencer-settings"
                         element={
-                            // Render InfluencerSettings without Header and Footer
-                            <InfluencerSettings />
+                            isAuthenticated ? (
+                                <InfluencerSettings />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
                         }
                     />
                     <Route
                         path="/profile"
                         element={
-                            <>
-                                <Header isAuthenticated={isAuthenticated} />
-                                <ProfilePage onLogout={handleLogout} />
-                                <Footer />
-                            </>
+                            isAuthenticated ? (
+                                <>
+                                    <Header isAuthenticated={isAuthenticated} />
+                                    <ProfilePage onLogout={handleLogout} />
+                                    <Footer />
+                                </>
+                            ) : (
+                                <Navigate to="/login" />
+                            )
                         }
                     />
                 </Routes>
