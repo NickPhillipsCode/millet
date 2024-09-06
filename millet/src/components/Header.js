@@ -33,7 +33,9 @@ const Header = ({ isAuthenticated }) => {
                     </div>
                 ) : (
                     <>
-                        <button className="login">Log In</button>
+                        <Link to="/login">
+                            <button className="login">Log In</button>
+                        </Link>
                         <Link to="/signup">
                             <button className="signup">Sign Up</button>
                         </Link>
