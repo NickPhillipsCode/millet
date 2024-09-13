@@ -41,7 +41,7 @@ function App() {
                         path="/login"
                         element={
                             isAuthenticated ? (
-                                <Navigate to="/profile" />
+                                <Navigate to="/dashboard" /> 
                             ) : (
                                 <LoginPage setIsAuthenticated={setIsAuthenticated} />
                             )
@@ -51,7 +51,7 @@ function App() {
                         path="/signup"
                         element={
                             isAuthenticated ? (
-                                <Navigate to="/profile" />
+                                <Navigate to="/dashboard" />
                             ) : (
                                 <SignUpPage />
                             )
@@ -82,9 +82,7 @@ function App() {
                         element={
                             isAuthenticated ? (
                                 <>
-                                    <Header isAuthenticated={isAuthenticated} />
                                     <ProfilePage onLogout={handleLogout} />
-                                    <Footer />
                                 </>
                             ) : (
                                 <Navigate to="/login" />

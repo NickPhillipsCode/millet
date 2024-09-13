@@ -2,12 +2,12 @@
 .login-page {
     display: flex;
     height: 100vh;
-    font-family: 'Inter', sans-serif;
+    font-family: 'WIP', sans-serif; /* Ensure the same font family */
 }
 
 .login-page .login-left {
     flex: 1;
-    background: url('../assets/images/hero-imageTwo.png') no-repeat center center/cover;
+    background: url('../assets/images/millet-hero-3.jpeg') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,13 +17,13 @@
 
 .login-page .login-left h1 {
     color: black;
-    font-size: 48px;
-    margin-bottom: 10px;
+    font-size: 65px; /* Same size as the signup page */
+    margin-bottom: 20px;
 }
 
 .login-page .login-left p {
     color: black;
-    font-size: 18px;
+    font-size: 20px; /* Match with signup page paragraph size */
     max-width: 300px;
     text-align: center;
 }
@@ -34,13 +34,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 50px;
+    padding: 20px;
 }
 
 .login-page .login-right h2 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-size: 32px; /* Match the heading size */
+    font-weight: 700; /* Bold font for heading */
+    margin-bottom: 20px;
     text-align: center;
     color: black;
 }
@@ -71,7 +71,6 @@
     color: black;
 }
 
-/* Login button styles */
 .login-page button {
     background-color: black;
     color: white;
@@ -100,7 +99,6 @@
     text-decoration: none;
 }
 
-/* Sign Up link styles */
 .login-page .signup-prompt a {
     color: blue;
     text-decoration: underline;
@@ -109,8 +107,6 @@
     transition: color 0.3s ease;
 }
 
-/* Visited state for the Sign Up link */
 .login-page .signup-prompt a:visited {
-    color: purple; /* Change the color to purple when the link has been visited */
+    color: purple; /* Visited state color */
 }
-

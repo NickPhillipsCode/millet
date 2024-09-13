@@ -13,9 +13,8 @@ const Header = ({ isAuthenticated }) => {
             </div>
             <nav>
                 <ul>
-                    <li><a href="#browse">Browse Influencers</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#blog">Blog</a></li>
                 </ul>
             </nav>
             <div className="auth-buttons">

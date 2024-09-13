@@ -77,12 +77,20 @@ textarea,
     background-size: 10px 10px;
 }
 
-input[type="text"]:focus,
-textarea:focus,
-.styled-select:focus {
-    border-color: #000;
-    background-color: #fff;
+input[type="text"],
+textarea,
+.styled-select {
+    background-color: transparent; /* Set this to transparent or #fff */
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
 }
+
 
 textarea {
     height: 80px;
@@ -141,6 +149,11 @@ button[type="button"]:hover {
     transition: background-color 0.3s ease;
 }
 
+textarea::placeholder {
+    font-family: 'WIP', sans-serif; /* Replace 'WIP' with the correct font if necessary */
+    font-size: 16px; /* Adjust font size if needed */
+}
+
 .save-button:hover {
     background-color: #333 !important;
 }
@@ -184,4 +197,5 @@ button[type="button"]:hover {
         width: 100%;
         font-size: 16px;
     }
+    
 }

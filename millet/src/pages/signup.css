@@ -11,7 +11,8 @@
 
 .signup-left {
     flex: 1;
-    background: url('../assets/images/hero-imageTwo.png') no-repeat center center/cover;
+    background: url('../assets/images/millet-hero-3.jpeg') no-repeat center center;
+    background-size: cover; /* Ensure the image covers the entire section */
     color: #000;
     display: flex;
     flex-direction: column;
@@ -24,11 +25,15 @@
 
 .signup-left h1 {
     font-size: 65px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #000;
 }
 
-.signup-left h1, .signup-left p {
-    text-align: center;
+.signup-left p {
+    font-size: 20px;
     margin-bottom: 20px;
+    text-align: center;
     color: #000;
 }
 
@@ -46,13 +51,17 @@
 .signup-right h2 {
     font-size: 32px;
     margin-bottom: 20px;
-    font-weight: 700; /* Bold font for heading */
+    font-weight: 700; /* Bold heading */
+    color: #000;
+    text-align: center;
 }
 
 .signup-right p {
     font-size: 16px;
     margin-bottom: 20px;
-    font-weight: 400; /* Regular font for paragraph */
+    font-weight: 400; /* Regular weight for paragraph */
+    text-align: center;
+    color: #000;
 }
 
 .signup-buttons {
@@ -64,7 +73,7 @@
 }
 
 .signup-buttons button {
-    padding: 10px 20px;
+    padding: 15px 30px; /* Increased padding for better clickability */
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
@@ -106,7 +115,6 @@ form input[type="text"] {
     background-color: transparent; /* Set background color to transparent */
 }
 
-
 .terms {
     display: flex;
     align-items: center;
@@ -132,7 +140,7 @@ form input[type="text"] {
 }
 
 .brand-btn, .influencer-btn {
-    padding: 10px 20px;
+    padding: 15px 30px; /* Increased padding for consistency */
     border: 1px solid #ccc;
     background-color: #f4f4f4;
     color: #333;

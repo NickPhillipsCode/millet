@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeroSection.css'; // For styling
-import heroImage from '../assets/images/hero-imageTwo.png'; // Update with your actual image name
+import heroImage from '../assets/images/millet-hero-3.jpeg'; // Update with your actual image name
 
 const HeroSection = () => {
     return (
@@ -9,7 +9,7 @@ const HeroSection = () => {
             <h1>Take live shopping to<br /> the next level</h1>
             <p>Are you a brand owner or an influencer looking for live collaborations?<br />Sign up to join America’s largest live-focused network.</p>
             <div className="hero-buttons">
-                <button className="browse-btn">Browse Influencers</button>
+                {/* <button className="browse-btn">Browse Influencers</button> */}
                 <button className="get-started-btn">Get Started</button>
             </div>
         </section>
