@@ -1,0 +1,224 @@
+/* Main Container */
+.campaign-container {
+    display: flex; /* Flex to position sidebar and main content */
+}
+
+/* Main Content Styling */
+.main-content {
+    flex: 1; /* Take the remaining space */
+    padding: 40px; /* Adjust padding as needed */
+    background-color: #fff; /* Background color for main content */
+    margin-left: 260px; /* Adjust based on sidebar width */
+}
+
+/* Campaign Content Container */
+.campaign-content {
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center content */
+    padding: 20px; /* Uniform padding */
+}
+
+/* Campaign Header Container */
+.campaign-header-container {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Vertical alignment */
+    justify-content: space-between; /* Distribute space between elements */
+    margin-bottom: 20px; /* Space below the header */
+}
+
+/* Campaign Header */
+.campaign-header {
+    display: flex;
+    flex-direction: column; /* Stack title and subheading vertically */
+    align-items: flex-start; /* Align text to the left */
+}
+
+/* Campaign Title */
+.campaign-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px; /* Spacing between title and subheading */
+}
+
+/* Subheading */
+.campaign-header p {
+    font-size: 18px;
+    color: #616161;
+    margin: 0;
+}
+
+/* New Campaign Button */
+.new-campaign-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 20px; /* Adjusted padding for alignment */
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 7px 30px -10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    display: flex; /* Flex container for icon and text */
+    align-items: center; /* Center content vertically */
+    height: 44px; /* Set height to match search bar */
+}
+
+.new-campaign-button:hover {
+    background-color: #333;
+}
+
+.new-campaign-button svg {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* Campaign Search Container */
+.campaign-search {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 20px;
+    margin-top: 20px; /* Add some space above */
+    gap: 10px; /* Space between input and button */
+}
+
+/* Reset Styles */
+.campaign-search input,
+.search-button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Input Field */
+.campaign-search input {
+    flex-grow: 1; /* Grow to take available space */
+    padding: 12px 15px; /* Adjust padding to control height */
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+/* Search Button Styling */
+.search-button {
+    padding: 12px 20px; /* Match top and bottom padding with the input */
+    background-color: #000;
+    color: #ffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center; /* Vertically center text */
+    justify-content: center; /* Horizontally center text */
+}
+
+.search-button:hover {
+    background-color: #333;
+}
+
+/* Campaign Results Styling */
+.campaign-results {
+    margin-top: 20px;
+}
+
+/* Campaign Table Styling */
+.campaign-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: .25px solid #000;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 200px; /* Set desired fixed height */
+}
+
+/* Table Header */
+.campaign-table-header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #000;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Table Body */
+.campaign-table-body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Data Rows */
+.campaign-table-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Table Cells */
+.table-cell {
+    padding: 12px 15px;
+    border-right: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.table-cell:last-child {
+    border-right: none;
+}
+
+/* No Results Container */
+.no-results-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Fill the table body */
+}
+
+.no-results {
+    color: #616161;
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Product Image Styling */
+.product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .campaign-content {
+        padding: 20px; /* Reduce padding for smaller screens */
+    }
+
+    .campaign-header-container {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .new-campaign-button {
+        margin-top: 20px; /* Add space above button */
+    }
+
+    .campaign-search {
+        flex-direction: column; /* Stack input and button vertically */
+        align-items: stretch; /* Stretch items to fill the container */
+    }
+
+    .campaign-search input {
+        width: 100%; /* Full width input */
+        margin-bottom: 10px; /* Space below input */
+    }
+
+    .search-button {
+        width: 100%; /* Full width button */
+        height: auto; /* Allow height to adjust */
+    }
+}

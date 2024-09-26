@@ -1,0 +1,93 @@
+/* Main Container */
+.influencer-brand-dashboard-container {
+    display: flex; /* Flex to position sidebar and main content */
+}
+
+/* Main Content Styling */
+.main-content {
+    flex: 1; /* Take the remaining space */
+    padding: 40px; /* Adjust padding as needed */
+    background-color: #fff; /* Background color for main content */
+    margin-left: 260px; /* Adjust based on sidebar width */
+    width: calc(100% - 260px); /* Adjust width to fill the remaining space */
+}
+
+/* Dashboard Content Container */
+.dashboard-content {
+    max-width: 800px; /* Control the maximum width */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 20px;
+    text-align: left; /* Ensure content is left-aligned */
+    margin-left: 0; /* Move content to the left */
+}
+
+/* Page Title */
+.dashboard-content h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Subtext */
+.dashboard-content p {
+    font-size: 18px;
+    color: #616161;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Tab Buttons */
+.tab-buttons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Tab Button Styles */
+.tab-button {
+    padding: 10px 20px;
+    background-color: #000;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Active and Hover States */
+.tab-button.active,
+.tab-button:hover {
+    background-color: #333;
+}
+
+/* Tab Content Styling */
+.tab-content {
+    border: .25px solid #000;
+    border-radius: 8px;
+    padding: 40px;
+    background-color: #f9f9f9;
+    text-align: left; /* Left-align content */
+}
+
+/* No Results Message */
+.no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    gap: 10px;
+    color: #9e9e9e;
+}
+
+/* Icon Styling */
+.no-results-icon {
+    font-size: 48px; /* Icon size */
+}
+
+/* Results Container */
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Align results to the left */
+}

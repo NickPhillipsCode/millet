@@ -1,0 +1,85 @@
+/* Navbar.css */
+
+.navbar {
+    width: 100%; /* Adjusted for the sidebar width */
+    height: 50px;
+    background-color: #ffffff; /* Set background color to white */
+    border-bottom: 1px solid #E5E5E5; /* Add bottom border with specified color */
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between content */
+    z-index: 10; /* Ensure it is above other elements */
+}
+
+.navbar-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Center items vertically */
+}
+
+.navbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+.profile-icon {
+    font-size: 28px; /* Icon size */
+    cursor: pointer; /* Pointer cursor */
+    color: #333; /* Dark color for the icon */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 60px; /* Below the navbar */
+    right: 0;
+    background-color: #ffffff; /* White background */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Hide overflow */
+    z-index: 1000;
+    width: 220px; /* Width of dropdown */
+    border: 1px solid #E5E5E5; /* Border with specified color */
+}
+
+.dropdown-menu ul {
+    list-style: none; /* Remove list styling */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+}
+
+.dropdown-menu li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* Padding for items */
+    cursor: pointer; /* Pointer cursor */
+    color: #333; /* Text color */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.dropdown-menu li:hover {
+    background-color: #f5f5f5; /* Light background on hover */
+}
+
+.dropdown-menu li svg {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.logout-button {
+    width: 100%; /* Full width */
+    padding: 10px 20px; /* Padding */
+    border: none; /* No border */
+    background-color: #dc3545; /* Red background */
+    color: #fff; /* White text */
+    cursor: pointer; /* Pointer cursor */
+    display: flex; /* Flex layout */
+    align-items: center; /* Center items */
+    gap: 10px; /* Gap between icon and text */
+    justify-content: center; /* Center content */
+}
+
+.logout-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}

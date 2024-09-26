@@ -6,8 +6,12 @@ import SignUpPage from './pages/signup';
 import BrandSettings from './pages/BrandSettings';
 import InfluencerSettings from './pages/InfluencerSettings';
 import ProfilePage from './pages/Profile';
+import OverviewPage from './pages/Overview'; 
+import SettingsPage from './pages/Settings'; 
 import Footer from './components/Footer';
 import LoginPage from './pages/Login';
+import Campaign from './pages/Campaign';
+import InfluencerBrandDashboard from './pages/InfluencerBrandDashboard'; // Import the new component
 import './App.css';
 
 function App() {
@@ -41,7 +45,7 @@ function App() {
                         path="/login"
                         element={
                             isAuthenticated ? (
-                                <Navigate to="/dashboard" /> 
+                                <Navigate to="/overview" /> 
                             ) : (
                                 <LoginPage setIsAuthenticated={setIsAuthenticated} />
                             )
@@ -51,7 +55,7 @@ function App() {
                         path="/signup"
                         element={
                             isAuthenticated ? (
-                                <Navigate to="/dashboard" />
+                                <Navigate to="/overview" />
                             ) : (
                                 <SignUpPage />
                             )
@@ -81,11 +85,49 @@ function App() {
                         path="/profile"
                         element={
                             isAuthenticated ? (
-                                <>
-                                    <ProfilePage onLogout={handleLogout} />
-                                </>
+                                <ProfilePage onLogout={handleLogout} />
                             ) : (
                                 <Navigate to="/login" />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/overview"
+                        element={
+                            isAuthenticated ? (
+                                <OverviewPage /> 
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/settings"
+                        element={
+                            isAuthenticated ? (
+                                <SettingsPage />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/campaigns"
+                        element={
+                            isAuthenticated ? (
+                                <Campaign /> // Make sure this matches your Campaign component import
+                            ) : (
+                                <Navigate to="/" /> // Redirects to the homepage if not authenticated
+                            )
+                        }
+                    />
+                    <Route
+                        path="/influencer-brand-dashboard"
+                        element={
+                            isAuthenticated ? (
+                                <InfluencerBrandDashboard /> // New route for InfluencerBrandDashboard
+                            ) : (
+                                <Navigate to="/login" /> // Redirects to the login page if not authenticated
                             )
                         }
                     />
