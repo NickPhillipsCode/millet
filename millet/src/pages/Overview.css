@@ -1,14 +1,5 @@
-/* Main Overview Container */
 .overview-container {
     display: flex; /* Flex to position sidebar and main content */
-}
-
-/* Main Content Styling */
-.main-content {
-    flex: 1; /* Take the remaining space */
-    padding: 40px; /* Adjust padding as needed */
-    background-color: #fff; /* Background color for main content */
-    margin-left: 260px; /* Adjust based on sidebar width */
 }
 
 /* Overview Content Container */
@@ -21,20 +12,22 @@
 /* Page Title */
 .overview-content h1 {
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 600;
     color: #000;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 /* Subtext */
 .overview-content p {
-    font-size: 18px;
+    font-size: 16px;
     color: #616161;
     margin-bottom: 40px;
+    font-weight: 500;
 }
 
 /* Card Container Styling */
 .card-container {
+    padding-top: 20px;
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Evenly space cards */
     gap: 20px; /* Space between cards */
@@ -62,7 +55,7 @@
     font-size: 16px;
     font-weight: 500;
     color: #616161;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 /* Card Value */

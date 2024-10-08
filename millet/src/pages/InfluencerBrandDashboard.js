@@ -20,14 +20,19 @@ const InfluencerBrandDashboard = () => {
         }
     }, []);
 
+    // Function to determine the number of results based on the tab
+    const getResultsCount = () => {
+        return tab === 'applications' ? applications.length : invites.length;
+    };
+
     return (
-        <div className="influencer-brand-dashboard-container">
+        <div className="overview-container">
             <Sidebar companyName={companyName} />
 
             <div className="main-content">
                 <Navbar />
-
-                <div className="dashboard-content">
+                
+                <div className="overview-content">
                     <h1>Influencers</h1>
                     <p>Here are the influencer applications and invites</p>
 
@@ -46,6 +51,11 @@ const InfluencerBrandDashboard = () => {
                         </button>
                     </div>
 
+                    {/* Display the number of results under the buttons */}
+                    <div className="results-count">
+                        {getResultsCount()} results
+                    </div>
+
                     <div className="tab-content">
                         {tab === 'applications' ? (
                             applications.length > 0 ? (
@@ -54,7 +64,15 @@ const InfluencerBrandDashboard = () => {
                                 </div>
                             ) : (
                                 <div className="no-results">
-                                    <span className="no-results-icon">👥</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="40"
+                                        height="40"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M12 12c2.205 0 4-1.795 4-4s-1.795-4-4-4-4 1.795-4 4 1.795 4 4 4zm0 2c-2.672 0-8 1.337-8 4v2h16v-2c0-2.663-5.328-4-8-4z" />
+                                    </svg>
                                     <p>No influencer applications found.</p>
                                 </div>
                             )
@@ -65,7 +83,15 @@ const InfluencerBrandDashboard = () => {
                                 </div>
                             ) : (
                                 <div className="no-results">
-                                    <span className="no-results-icon">📧</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="40"
+                                        height="40"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M20 8h-16v10h16v-10zm0-2v-3h-16v3h-4v14h24v-14h-4zm-4 5h-8v-1h8v1z" />
+                                    </svg>
                                     <p>No influencer invites found.</p>
                                 </div>
                             )

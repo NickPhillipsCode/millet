@@ -63,7 +63,7 @@ const BrandSettings = () => {
             if (response.ok) {
                 alert('Settings saved successfully!');
                 // Redirect to the Profile page
-                navigate('/profile');
+                navigate('/overview');
             } else {
                 const errorData = await response.json();
                 alert(`Failed to save settings. Error: ${errorData.message || 'Unknown error'}`);

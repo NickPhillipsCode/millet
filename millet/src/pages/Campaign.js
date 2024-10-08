@@ -2,68 +2,84 @@ import React, { useEffect, useState } from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
-import './Campaign.css'; // Main CSS for the page
+import NewCampaignPopUp from '../components/NewCampaignPopUp';
+import './Campaign.css';
+
+import { useLocation } from 'react-router-dom';
 
 const CampaignPage = () => {
     const [campaigns, setCampaigns] = useState([]);
-    const [companyName, setCompanyName] = useState(''); // State to store company name
+    const [companyName, setCompanyName] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const location = useLocation(); // To detect when the route changes
 
-    useEffect(() => {
-        // Fetch the company name from the user data (e.g., from localStorage or an API)
+    const fetchCampaigns = async () => {
         const token = localStorage.getItem('token');
         if (token) {
-            const payload = JSON.parse(atob(token.split('.')[1])); // Decode the token
-            setCompanyName(payload.company_name || 'Test Company'); // Update with actual company name
-        }
-
-        // Fetch campaigns data from your API (Replace this with your actual API request)
-        setCampaigns([
-            {
-                productName: 'Test - Nick Campaign',
-                productImage: '',
-                category: 'Beauty',
-                price: '$5',
-                interested: 12,
-                startDate: 'Sep 22, 2024'
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            setCompanyName(payload.company_name || 'Test Company');
+    
+            try {
+                const response = await fetch('http://localhost:5000/api/campaigns', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    setCampaigns(data);
+                } else {
+                    // Log response text to understand the issue
+                    const errorText = await response.text();
+                    console.error('Failed to fetch campaigns:', response.status, errorText);
+                }
+            } catch (error) {
+                console.error('Error fetching campaigns:', error);
             }
-        ]);
-    }, []);
+        }
+    };
+    
+    // Fetch campaigns when the component mounts or when the location changes
+    useEffect(() => {
+        fetchCampaigns();
+    }, [location, isModalOpen]); // Add location and isModalOpen as dependencies to refetch campaigns when navigating or closing the modal
 
-    // Function to handle search input change
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
-    // Function to filter campaigns based on search term
-    const filteredCampaigns = campaigns.filter(campaign =>
-        campaign.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredCampaigns = campaigns.filter((campaign) =>
+        campaign.product_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const addNewCampaign = (newCampaign) => {
+        setCampaigns((prevCampaigns) => [...prevCampaigns, newCampaign]);
+    };
 
     return (
         <div className="campaign-container">
-            {/* Sidebar Component */}
             <Sidebar companyName={companyName} />
-
-            {/* Main Content */}
             <div className="main-content">
-                {/* Include Navbar Component */}
                 <Navbar />
-
-                {/* Campaign Content */}
                 <div className="campaign-content">
-                    {/* Campaign Header */}
                     <div className="campaign-header-container">
                         <div className="campaign-header">
                             <h1>Campaigns</h1>
                             <p>Here are your current campaigns</p>
                         </div>
-                        <button className="new-campaign-button">
+                        <button className="new-campaign-button" onClick={() => setIsModalOpen(true)}>
                             <FaPlusCircle /> New Campaign
                         </button>
                     </div>
 
-                    {/* Search Bar */}
                     <div className="campaign-search">
                         <input
                             type="text"
@@ -74,7 +90,6 @@ const CampaignPage = () => {
                         <button className="search-button">Search</button>
                     </div>
 
-                    {/* Campaign Results */}
                     <div className="campaign-results">
                         <p>{filteredCampaigns.length} results</p>
                         <div className="campaign-table">
@@ -90,12 +105,12 @@ const CampaignPage = () => {
                                 {filteredCampaigns.length > 0 ? (
                                     filteredCampaigns.map((campaign, index) => (
                                         <div className="campaign-table-row" key={index}>
-                                            <div className="table-cell">{campaign.productName}</div>
+                                            <div className="table-cell">{campaign.product_name}</div>
                                             <div className="table-cell">
-                                                {campaign.productImage ? (
+                                                {campaign.product_image ? (
                                                     <img
-                                                        src={campaign.productImage}
-                                                        alt={campaign.productName}
+                                                        src={campaign.product_image}
+                                                        alt={campaign.product_name}
                                                         className="product-image"
                                                     />
                                                 ) : (
@@ -105,11 +120,10 @@ const CampaignPage = () => {
                                             <div className="table-cell">{campaign.category}</div>
                                             <div className="table-cell">{campaign.price}</div>
                                             <div className="table-cell">{campaign.interested}</div>
-                                            <div className="table-cell">{campaign.startDate}</div>
+                                            <div className="table-cell">{campaign.start_date}</div>
                                         </div>
                                     ))
                                 ) : (
-                                    // Empty div to fill space when there are no campaigns
                                     <div className="no-results-container">
                                         <p className="no-results">No results found</p>
                                     </div>
@@ -119,6 +133,9 @@ const CampaignPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Pass addNewCampaign function to NewCampaignPopUp */}
+            <NewCampaignPopUp isOpen={isModalOpen} onClose={handleModalClose} addNewCampaign={addNewCampaign} />
         </div>
     );
 };

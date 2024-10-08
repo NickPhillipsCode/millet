@@ -22,6 +22,7 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/');
+        window.location.reload();
     };
 
     return (
@@ -32,7 +33,7 @@ const Navbar = () => {
                     {dropdownVisible && (
                         <div className="dropdown-menu">
                             <ul>
-                                <li onClick={() => handleNavigate('/dashboard')}>
+                                <li onClick={() => handleNavigate('/overview')}>
                                     <FaHome /> Dashboard
                                 </li>
                                 <li onClick={() => handleNavigate('/marketplace')}>
