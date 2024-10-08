@@ -1,5 +1,5 @@
 // src/pages/SignUpPage.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './signup.css';
 
 const SignUpPage = () => {
@@ -7,13 +7,9 @@ const SignUpPage = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        companyName: '', // Include companyName in the form data
+        companyName: '',
         agreedToTerms: false,
     });
-
-    useEffect(() => {
-        document.title = "Sign Up | millet";
-    }, []);
 
     const handleUserTypeSelection = (type) => {
         setUserType(type);

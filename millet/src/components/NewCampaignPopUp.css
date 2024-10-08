@@ -1,0 +1,286 @@
+.modal-content, 
+.modal-content h2,
+.modal-content label, 
+.modal-content input, 
+.modal-content select, 
+.modal-content textarea, 
+.modal-content .upload-image-button, 
+.modal-content .submit-button {
+    font-family: 'WIP', sans-serif;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Darken background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 550px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #000;
+}
+
+/* Tab container styles */
+.tab-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+/* Tab button styles */
+.tab {
+    padding: 10px 60px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    color: #616161;
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Active tab (selected) styles */
+.active-tab {
+    background-color: #F57EB3; /* Your preferred active color */
+    color: white;
+    border-radius: 8px;
+}
+
+/* Hover styles for unselected tabs */
+.tab:not(.active-tab):hover {
+    background-color: #f0f0f0; /* Light gray for hover */
+    color: #616161;
+    border-radius: 8px;
+}
+
+/* Wrapper for image and form fields to be placed side by side */
+.modal-content .form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Improved Upload image section */
+.modal-content .upload-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    flex: 1 1 calc(50% - 20px); /* Match the width of form-group-half */
+    text-align: center;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.modal-content .upload-image-button {
+    background-color: #F57EB3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.modal-content .upload-image-button:hover {
+    background-color: #d96b98;
+}
+
+.modal-content .upload-image-container img {
+    margin-top: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Delete image button */
+.modal-content .delete-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #F57EB3;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Close button in top-right corner */
+.modal-content .close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Title styling */
+.modal-content h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Two-column layout for form fields */
+.modal-content .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.modal-content .form-group-half {
+    flex: 1 1 calc(50% - 20px); /* Half-width column for each input */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal-content .form-group label {
+    margin-bottom: 5px; /* Add spacing between label and input field/dropdown */
+    font-weight: 500; /* Adjust the font weight for better readability */
+}
+
+/* Style the input fields and selects */
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Placeholder color */
+.modal-content input::placeholder {
+    color: #aaa;
+}
+
+/* Full width for checkboxes and other wide elements */
+.modal-content .form-group-full {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.modal-content .checkbox-container {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Ensure it takes full width to avoid wrapping */
+}
+
+.modal-content .checkbox-container label {
+    white-space: nowrap; /* Prevent wrapping of the text */
+    font-size: 1rem;
+    margin-right: 10px; /* Add space between the label and the checkbox */
+}
+
+.modal-content .checkbox-container input {
+    margin-left: 10px;
+}
+
+/* Style the save button */
+.modal-content .submit-button {
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.modal-content .description-container textarea {
+    width: 100%; /* Make textarea full width */
+    height: 150px; /* Set a fixed height for the textarea */
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.modal-content .description-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Add margin below label to create space between label and textarea */
+.modal-content .description-container label {
+    margin-bottom: 5px; /* Add enough space between label and textarea */
+    font-weight: 500; /* Consistency with other labels */
+}
+
+/* Style the textarea */
+.modal-content .description-container textarea {
+    width: 100%;
+    height: 150px; /* Set a fixed height for comfort */
+    padding: 12px;
+    margin-bottom: 20px; /* Add spacing below the textarea */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+
+.starting-rate-container .percent-symbol {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent users from clicking the symbol */
+    font-size: 14px;
+    color: #000;
+}

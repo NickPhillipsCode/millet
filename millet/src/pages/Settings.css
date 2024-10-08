@@ -1,0 +1,143 @@
+.settings-page .settings-container {
+    display: flex;
+    height: 100vh; 
+}
+
+.settings-page .sidebar {
+    background-color: #f0f0f0;
+    width: 250px;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.settings-page .main-content {
+    flex: 1;
+    margin-left: 250px; /* Sidebar width */
+    padding: 60px; /* Increased padding to push down content */
+    padding-top: 80px; /* Additional top padding for visibility */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+}
+
+.settings-page .profile-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.settings-page .dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    z-index: 100;
+}
+
+.settings-page .dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.settings-page .dropdown-menu ul li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-page .dropdown-menu ul li:hover {
+    background-color: #f0f0f0;
+}
+
+.settings-page .logout-button {
+    background: none;
+    border: none;
+    color: #ff0000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.settings-page .logout-button:hover {
+    background-color: #ffffff;
+}
+
+.settings-page .settings-heading {
+    font-size: 28px; /* Match OverviewPage heading size */
+    margin-bottom: 20px; /* Add bottom margin */
+    margin-top: 0; /* Remove any top margin */
+    color: #000;
+    text-align: left; /* Align left to match OverviewPage */
+}
+
+
+.settings-page .settings-subheading {
+    font-size: 18px;
+    margin-bottom: 20px; /* Reduce margin to match OverviewPage */
+    color: #555;
+    text-align: left; /* Align left */
+}
+
+.settings-page .settings-form {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.settings-page .details-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    width: 48%;
+}
+
+.settings-page .input-group {
+    margin-bottom: 15px;
+}
+
+.settings-page .input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.settings-page .input-group input,
+.settings-page .input-group textarea,
+.settings-page .styled-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.settings-page .save-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.settings-page .save-button {
+    background-color: #000;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.settings-page .save-button:hover {
+    background-color: #333;
+}

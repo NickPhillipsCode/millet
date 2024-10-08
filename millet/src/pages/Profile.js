@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa'; // Only keeping necessary imports
+import Sidebar from '../components/Sidebar';
+import Navbar from '../components/Navbar';
 import './Profile.css';
 
 const ProfilePage = ({ onLogout }) => {
     const [email, setEmail] = useState('');
+    const [companyName, setCompanyName] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         
         if (token) {
-            // Decode the token to extract user email
             const payload = JSON.parse(atob(token.split('.')[1]));
             setEmail(payload.email);
+            if (payload.user_type === 'brand') {
+                setCompanyName(payload.company_name || 'Test Company');
+            }
         } else {
             setEmail('No user logged in.');
         }
@@ -21,22 +27,29 @@ const ProfilePage = ({ onLogout }) => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         if (onLogout) {
-            onLogout(); // Call the onLogout function passed as a prop to refresh the header
+            onLogout();
         }
-        navigate('/'); // Redirect to the homepage after logout
+        navigate('/');
     };
 
     return (
         <div className="profile-container">
-            <h2>Your Profile</h2>
-            <div className="profile-details">
-                <p>Email: {email}</p>
+            <Sidebar companyName={companyName} />
+            <div className="main-content">
+                <Navbar /> {/* Navbar component */}
+
+                <div className="profile-details">
+                    <div className="profile-card">
+                        <h3>Email</h3>
+                        <p>{email}</p>
+                    </div>
+
+                    <div className="profile-card">
+                        <h3>Other Info</h3>
+                        <p>Details coming soon...</p>
+                    </div>
+                </div>
             </div>
-            {email !== 'No user logged in.' && (
-                <button onClick={handleLogout} className="logout-button">
-                    Log Out
-                </button>
-            )}
         </div>
     );
 };

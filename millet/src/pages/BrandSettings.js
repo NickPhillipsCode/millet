@@ -63,7 +63,7 @@ const BrandSettings = () => {
             if (response.ok) {
                 alert('Settings saved successfully!');
                 // Redirect to the Profile page
-                navigate('/profile');
+                navigate('/overview');
             } else {
                 const errorData = await response.json();
                 alert(`Failed to save settings. Error: ${errorData.message || 'Unknown error'}`);
@@ -144,14 +144,30 @@ const BrandSettings = () => {
                         <option value="professionals">Professionals</option>
                         <option value="students">Students</option>
                     </select>
-                    <input
-                        type="text"
+                    <select
                         name="influencerCategories"
-                        placeholder="Preferred Influencer Categories"
                         value={formData.influencerCategories}
                         onChange={handleChange}
                         required
-                    />
+                        className="styled-select"
+                    >
+                        <option value="">Select Preferred Influencer Category</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="beauty">Beauty</option>
+                        <option value="fitness">Fitness</option>
+                        <option value="food">Food</option>
+                        <option value="tech">Tech</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="travel">Travel</option>
+                        <option value="music">Music</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="parenting">Parenting</option>
+                        <option value="sports">Sports</option>
+                        <option value="education">Education</option>
+                        <option value="business">Business</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="finance">Finance</option>
+                    </select>
                     <input
                         type="text"
                         name="marketingBudget"
@@ -163,7 +179,7 @@ const BrandSettings = () => {
                 </div>
                 <div className="save-button-container">
                     <button type="submit" className="save-button" disabled={loading || !isFormValid()}>
-                        {loading ? 'Saving...' : 'Complete Sign Up'} {/* Updated button text */}
+                        {loading ? 'Saving...' : 'Complete Sign Up'}
                     </button>
                 </div>
             </form>

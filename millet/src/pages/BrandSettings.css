@@ -8,6 +8,7 @@
     box-sizing: border-box;
 }
 
+
 .settings-form {
     display: flex;
     flex-direction: column;
@@ -53,6 +54,7 @@ h3 {
     text-align: center;
 }
 
+/* Updated font consistency */
 input[type="text"],
 textarea,
 .styled-select {
@@ -62,11 +64,14 @@ textarea,
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
+    font-family: 'WIP', sans-serif; /* Ensure consistent font */
+    color: #000;
     box-sizing: border-box;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     transition: border-color 0.3s ease-in-out;
 }
 
+/* Custom dropdown select styling */
 .styled-select {
     appearance: none; /* Remove default dropdown arrow */
     -webkit-appearance: none;
@@ -77,16 +82,18 @@ textarea,
     background-size: 10px 10px;
 }
 
-input[type="text"]:focus,
-textarea:focus,
-.styled-select:focus {
-    border-color: #000;
-    background-color: #fff;
-}
-
+/* Ensure textarea styling consistency */
 textarea {
     height: 80px;
     resize: none;
+}
+
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+    font-family: 'WIP', sans-serif; /* Consistent placeholder font */
+    font-size: 16px;
+    color: #999; /* Optional: change placeholder color */
 }
 
 button {

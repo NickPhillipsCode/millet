@@ -13,15 +13,14 @@ const Header = ({ isAuthenticated }) => {
             </div>
             <nav>
                 <ul>
-                    <li><a href="#browse">Browse Influencers</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#legal">Legal</a></li>
                 </ul>
             </nav>
             <div className="auth-buttons">
                 {isAuthenticated ? (
                     <div className="profile-icon">
-                        <Link to="/profile">
+                        <Link to="/overview">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512"
