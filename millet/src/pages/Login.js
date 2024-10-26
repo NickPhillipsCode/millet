@@ -28,7 +28,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
         setIsAuthenticated(true); // Update authentication status
 
         // Redirect to the profile page
-        navigate('/profile');
+        navigate('/overview');
       } else {
         // Handle login error (invalid credentials)
         setError(data.message || 'Login failed');

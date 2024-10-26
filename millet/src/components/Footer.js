@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import logo from '../assets/images/millet_logo.png'; // Import the logo image
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -9,13 +10,21 @@ const Footer = () => {
                 <img src={logo} alt="millet logo" className="footer-logo-img" /> {/* Add the logo image */}
             </div>
             <div className="footer-links">
-                <a href="#legal">Legal</a>
+                {/* Add the legal and contact links */}
+                <Link to="/legal/terms">Legal</Link>
                 <a href="#contact">Contact us</a>
-                <a href="#linkedin">LinkedIn</a>
+                <a 
+                    href="https://www.linkedin.com/company/millet-ai/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                >
+                    LinkedIn
+                </a>
             </div>
             <div className="footer-legal">
-                <a href="#privacy">Privacy</a>
-                <a href="#terms">Terms</a>
+                {/* These are the updated links to Privacy and Terms */}
+                <Link to="/legal/privacy">Privacy</Link>
+                <Link to="/legal/terms">Terms</Link>
             </div>
         </footer>
     );

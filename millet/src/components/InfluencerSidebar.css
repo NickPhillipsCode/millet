@@ -1,0 +1,123 @@
+/* Sidebar Styles */
+.sidebar {
+    background-color: #F5F5F5; /* Sidebar background color */
+    width: 260px; /* Updated width */
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    transition: transform 0.3s ease; /* Smooth transition for open/close */
+    z-index: 1000; /* Ensure sidebar is above other elements */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: 'Inter', sans-serif; /* Ensure 'Inter' font is used */
+}
+
+.sidebar.closed {
+    transform: translateX(-100%); /* Hide sidebar */
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Show sidebar */
+}
+
+/* Company Name Style */
+.company-name {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500; /* Regular font weight */
+    color: #333;
+}
+
+/* Sidebar List Styles */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default margins */
+}
+
+/* Sidebar List Item Styles */
+.sidebar ul li {
+    margin-bottom: 15px; /* Space between items */
+}
+
+/* Sidebar Link Styles */
+.sidebar ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400; /* Normal font weight */
+    color: #616161;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+    padding: 10px 15px; /* Padding around items */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effects */
+}
+
+.sidebar ul li a span {
+    font-weight: 400; /* Ensure text within span is not bold */
+}
+
+.sidebar ul li a.active {
+    font-weight: 500; /* Slightly increased weight for active links */
+    color: #000; /* Active link color */
+    background-color: #e0e0e0; /* Background color for active link */
+}
+
+/* Sidebar Link Hover */
+.sidebar ul li a:hover {
+    background-color: #e0e0e0; /* Light hover effect */
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1100; /* Ensure toggle button is above the sidebar */
+    display: none; /* Hidden by default */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80%; /* Adjust the width for smaller screens */
+        transform: translateX(-100%); /* Hide sidebar by default */
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Show sidebar when open */
+    }
+
+    .sidebar-toggle {
+        display: block; /* Show toggle button on small screens */
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        z-index: 1050; /* Below the toggle button but above other content */
+        display: block;
+    }
+}
+
+/* Adjust main content when sidebar is open */
+@media (min-width: 769px) {
+    .main-content {
+        margin-left: 260px; /* Offset main content by sidebar width */
+    }
+}

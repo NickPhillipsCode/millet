@@ -12,6 +12,7 @@ const InfluencerSettings = () => {
         campaignCategories: '',
     });
 
+    const [videoFile, setVideoFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -42,6 +43,10 @@ const InfluencerSettings = () => {
         });
     };
 
+    const handleVideoUpload = (e) => {
+        setVideoFile(e.target.files[0]);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -59,18 +64,28 @@ const InfluencerSettings = () => {
                 return;
             }
 
+            const formDataObject = new FormData();
+            formDataObject.append('firstName', formData.firstName);
+            formDataObject.append('lastName', formData.lastName);
+            formDataObject.append('tiktokHandle', formData.tiktokHandle);
+            formDataObject.append('about', formData.about);
+            formDataObject.append('campaignTypes', formData.campaignTypes);
+            formDataObject.append('campaignCategories', formData.campaignCategories);
+            if (videoFile) {
+                formDataObject.append('introVideo', videoFile);
+            }
+
             const response = await fetch('http://localhost:5000/influencer-settings', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify(formData),
+                body: formDataObject,
             });
 
             if (response.ok) {
                 alert('Profile saved successfully!');
-                navigate('/profile');
+                navigate('/InfluencerDashboard/Account');
             } else {
                 const errorData = await response.json();
                 console.error('Server Error:', errorData);
@@ -125,68 +140,141 @@ const InfluencerSettings = () => {
                         onChange={handleChange}
                         required
                     />
+                    <div className="video-upload-section">
+                        <label htmlFor="introVideo">Upload an intro video</label>
+                        <input
+                            type="file"
+                            name="introVideo"
+                            id="introVideo"
+                            accept="video/*"
+                            onChange={handleVideoUpload}
+                        />
+                    </div>
                 </div>
 
                 <div className="details-section">
-                    <h3>Interests</h3>
-                    <p>Select the campaign types and categories that you are interested in for collaborations</p>
-                    <div className="checkbox-section">
-                        <label>Campaign types</label>
-                        <div>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="campaignTypes"
-                                    value="Livestream"
-                                    onChange={handleCheckboxChange}
-                                />
-                                Livestream
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="campaignTypes"
-                                    value="Short video"
-                                    onChange={handleCheckboxChange}
-                                />
-                                Short video
-                            </label>
-                        </div>
-                    </div>
-                    <div className="checkbox-section">
-                        <label>Campaign categories</label>
-                        <div>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="campaignCategories"
-                                    value="Fashion"
-                                    onChange={handleCheckboxChange}
-                                />
-                                Fashion
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="campaignCategories"
-                                    value="Beauty"
-                                    onChange={handleCheckboxChange}
-                                />
-                                Beauty
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="campaignCategories"
-                                    value="Clothing"
-                                    onChange={handleCheckboxChange}
-                                />
-                                Clothing
-                            </label>
-                            {/* Add more options here as needed */}
-                        </div>
-                    </div>
-                </div>
+    <h3>Interests</h3>
+    <p>Select the campaign types and categories that you are interested in for collaborations</p>
+    <div className="checkbox-section">
+        <label>Campaign types</label>
+        <div>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignTypes"
+                    value="Livestream"
+                    onChange={handleCheckboxChange}
+                />
+                Livestream
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignTypes"
+                    value="Short video"
+                    onChange={handleCheckboxChange}
+                />
+                Short video
+            </label>
+        </div>
+    </div>
+    <div className="checkbox-section">
+        <label>Campaign categories</label>
+        <div>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Fashion"
+                    onChange={handleCheckboxChange}
+                />
+                Fashion
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Beauty"
+                    onChange={handleCheckboxChange}
+                />
+                Beauty
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Clothing"
+                    onChange={handleCheckboxChange}
+                />
+                Clothing
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Hairstyling"
+                    onChange={handleCheckboxChange}
+                />
+                Hairstyling
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Babycare"
+                    onChange={handleCheckboxChange}
+                />
+                Babycare
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Food"
+                    onChange={handleCheckboxChange}
+                />
+                Food
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Outdoors"
+                    onChange={handleCheckboxChange}
+                />
+                Outdoors
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Skincare"
+                    onChange={handleCheckboxChange}
+                />
+                Skincare
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Travel"
+                    onChange={handleCheckboxChange}
+                />
+                Travel
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    name="campaignCategories"
+                    value="Lifestyle"
+                    onChange={handleCheckboxChange}
+                />
+                Lifestyle
+            </label>
+        </div>
+    </div>
+</div>
+
 
                 <div className="save-button-container">
                     <button type="submit" className="save-button" disabled={loading || !isFormValid()}>

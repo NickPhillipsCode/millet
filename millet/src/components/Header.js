@@ -1,9 +1,25 @@
-import React from 'react';
+// src/components/Header.js
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa'; // Import FaUserCircle from react-icons
 import './Header.css';
 import logo from '../assets/images/millet_logo.png'; // Import the logo image
 
-const Header = ({ isAuthenticated }) => {
+const Header = ({ isAuthenticated, showAuthButtons = true }) => {
+    const [userType, setUserType] = useState(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1])); // Decode the token
+                setUserType(payload.user_type); // Set the user type (e.g., 'brand' or 'influencer')
+            } catch (error) {
+                console.error("Invalid token format:", error);
+            }
+        }
+    }, []);
+
     return (
         <header className="header">
             <div className="logo">
@@ -17,30 +33,26 @@ const Header = ({ isAuthenticated }) => {
                     <li><a href="#legal">Legal</a></li>
                 </ul>
             </nav>
-            <div className="auth-buttons">
-                {isAuthenticated ? (
-                    <div className="profile-icon">
-                        <Link to="/overview">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"
-                                className="profile-icon-svg"
-                            >
-                                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
-                            </svg>
-                        </Link>
-                    </div>
-                ) : (
-                    <>
-                        <Link to="/login">
-                            <button className="login">Log In</button>
-                        </Link>
-                        <Link to="/signup">
-                            <button className="signup">Sign Up</button>
-                        </Link>
-                    </>
-                )}
-            </div>
+            {showAuthButtons && (
+                <div className="auth-buttons">
+                    {isAuthenticated ? (
+                        <div className="profile-icon">
+                            <Link to={userType === 'brand' ? '/overview' : '/InfluencerDashboard/Account'}>
+                                <FaUserCircle className="profile-icon-svg" /> {/* Replace SVG with FaUserCircle */}
+                            </Link>
+                        </div>
+                    ) : (
+                        <>
+                            <Link to="/login">
+                                <button className="login">Log In</button>
+                            </Link>
+                            <Link to="/signup">
+                                <button className="signup">Sign Up</button>
+                            </Link>
+                        </>
+                    )}
+                </div>
+            )}
         </header>
     );
 };
