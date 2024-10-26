@@ -83,7 +83,7 @@ const CampaignPage = () => {
                     <div className="campaign-search">
                         <input
                             type="text"
-                            placeholder="Search for a campaign"
+                            placeholder="Search for a campaign by product name"
                             value={searchTerm}
                             onChange={handleSearchChange}
                         />
@@ -93,42 +93,45 @@ const CampaignPage = () => {
                     <div className="campaign-results">
                         <p>{filteredCampaigns.length} results</p>
                         <div className="campaign-table">
-                            <div className="campaign-table-header">
-                                <div className="table-cell">Product name</div>
-                                <div className="table-cell">Product image</div>
-                                <div className="table-cell">Category</div>
-                                <div className="table-cell">Price</div>
-                                <div className="table-cell">Interested</div>
-                                <div className="table-cell">Start date</div>
-                            </div>
-                            <div className="campaign-table-body">
-                                {filteredCampaigns.length > 0 ? (
-                                    filteredCampaigns.map((campaign, index) => (
-                                        <div className="campaign-table-row" key={index}>
-                                            <div className="table-cell">{campaign.product_name}</div>
-                                            <div className="table-cell">
-                                                {campaign.product_image ? (
-                                                    <img
-                                                        src={campaign.product_image}
-                                                        alt={campaign.product_name}
-                                                        className="product-image"
-                                                    />
-                                                ) : (
-                                                    'N/A'
-                                                )}
-                                            </div>
-                                            <div className="table-cell">{campaign.category}</div>
-                                            <div className="table-cell">{campaign.price}</div>
-                                            <div className="table-cell">{campaign.interested}</div>
-                                            <div className="table-cell">{campaign.start_date}</div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <div className="no-results-container">
-                                        <p className="no-results">No results found</p>
-                                    </div>
-                                )}
-                            </div>
+                        <div className="campaign-table-header">
+    <div className="table-cell">Product name</div>
+    <div className="table-cell">Product image</div>
+    <div className="table-cell">Category</div>
+    <div className="table-cell">Price</div>
+    <div className="table-cell">Interested</div>
+    <div className="table-cell">Start Date</div> {/* Replaced Start Date with Created At */}
+</div>
+<div className="campaign-table-body">
+    {filteredCampaigns.length > 0 ? (
+        filteredCampaigns.map((campaign, index) => (
+            <div className="campaign-table-row" key={index}>
+                <div className="table-cell">{campaign.product_name}</div>
+                <div className="table-cell">
+                    {campaign.product_image ? (
+                        <img
+                            src={campaign.product_image}
+                            alt={campaign.product_name}
+                            className="product-image"
+                        />
+                    ) : (
+                        'N/A'
+                    )}
+                </div>
+                <div className="table-cell">{campaign.category}</div>
+                <div className="table-cell">{campaign.price}</div>
+                <div className="table-cell">{campaign.interested}</div>
+                <div className="table-cell">
+                    {new Date(campaign.created_at).toLocaleDateString()} {/* Display Created At */}
+                </div>
+            </div>
+        ))
+    ) : (
+        <div className="no-results-container">
+            <p className="no-results">No results found</p>
+        </div>
+    )}
+</div>
+
                         </div>
                     </div>
                 </div>

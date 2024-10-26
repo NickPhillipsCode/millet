@@ -4,19 +4,17 @@
     align-items: center;
     padding: 0 20px; /* Padding from the edges of the screen */
     background-color: #000;
-    height: 95px;
+    height: 100px;
     margin: 0 auto;
 }
 
 .logo {
-    font-size: 24px;
-    color: #F57EB3;
     font-weight: normal;
     text-align: left;
     flex: 1; /* Takes equal space as auth-buttons */
     display: flex;
     justify-content: flex-start; /* Aligns content to the left */
-    padding-left: 20px; /* Same padding as the auth-buttons */
+    
 }
 
 nav {
@@ -65,15 +63,21 @@ nav ul li a {
     color: #000;
 }
 
-.profile-icon {
+.header .profile-icon {
     display: flex;
-    align-items: center;
+    align-items: center; /* Ensure it's vertically centered */
     justify-content: center;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    color: #fff;
+    margin-top: 5px; /* Only affect the header icon */
 }
 
+
 .profile-icon-svg {
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
     fill: #ffffff; /* Icon color */
     cursor: pointer;
 }

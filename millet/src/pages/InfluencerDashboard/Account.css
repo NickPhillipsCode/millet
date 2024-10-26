@@ -1,0 +1,66 @@
+.overview-container {
+    display: flex; /* Flex to position sidebar and main content */
+}
+
+/* Overview Content Container */
+.overview-content {
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center content */
+    padding: 20px;
+}
+
+/* Page Title */
+.overview-content h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+/* Subtext */
+.overview-content p {
+    font-size: 16px;
+    color: #616161;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+/* Card Container Styling */
+.card-container {
+    padding-top: 20px;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Evenly space cards */
+    gap: 20px; /* Space between cards */
+    flex-wrap: wrap; /* Wrap cards on smaller screens */
+}
+
+/* Card Styles */
+.card {
+    background-color: #ffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1; /* All cards take equal space */
+    min-width: 200px; /* Minimum width for each card */
+    text-align: left;
+    transition: transform 0.3s ease; /* Smooth hover transition */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Raise card on hover */
+}
+
+/* Card Header */
+.card-header {
+    font-size: 16px;
+    font-weight: 500;
+    color: #616161;
+    margin-bottom: 20px;
+}
+
+/* Card Value */
+.card-value {
+    font-size: 36px;
+    font-weight: 600;
+    color: #000;
+}

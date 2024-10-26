@@ -1,0 +1,119 @@
+/* TermsAndConditions.css */
+
+.legal-page {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 40px 20px; /* Added padding-top and padding-bottom */
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.legal-page .content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1050px;
+}
+
+.legal-page h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.legal-page .effective-date {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #777;
+}
+
+.legal-page section {
+    margin-bottom: 40px;
+}
+
+.legal-page h2 {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.legal-page p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.legal-page ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.legal-page li {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.legal-page a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.legal-page a:hover {
+    text-decoration: underline;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .legal-page {
+        padding: 30px 15px; /* Adjusted padding for smaller screens */
+    }
+
+    .legal-page .content {
+        padding: 20px;
+    }
+
+    .legal-page h1 {
+        font-size: 2rem;
+    }
+
+    .legal-page h2 {
+        font-size: 1.5rem;
+    }
+
+    .legal-page p,
+    .legal-page li {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-page {
+        padding: 20px 10px; /* Further adjusted padding */
+    }
+
+    .legal-page .content {
+        padding: 15px;
+    }
+
+    .legal-page h1 {
+        font-size: 1.75rem;
+    }
+
+    .legal-page h2 {
+        font-size: 1.25rem;
+    }
+
+    .legal-page p,
+    .legal-page li {
+        font-size: 0.85rem;
+    }
+
+    
+}

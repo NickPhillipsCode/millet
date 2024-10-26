@@ -11,20 +11,40 @@ import SettingsPage from './pages/Settings';
 import Footer from './components/Footer';
 import LoginPage from './pages/Login';
 import Campaign from './pages/Campaign';
-import InfluencerBrandDashboard from './pages/InfluencerBrandDashboard'; // Import the new component
+import InfluencerBrandDashboard from './pages/InfluencerBrandDashboard';
+import Marketplace from './pages/Marketplace'; 
+import TermsAndConditions from './pages/Legal/TermsAndConditions';
+import PrivatePolicy from './pages/Legal/PrivatePolicy';
+import InfluencerAccountPage from './pages/InfluencerDashboard/Account'; 
+import InfluencerSettingsPage from './pages/InfluencerDashboard/Settings'; // Import the new page
+
+import ProtectedRoute from './components/ProtectedRoutes'; // Import ProtectedRoute
+
 import './App.css';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
+    const [userType, setUserType] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         setIsAuthenticated(!!token);
+
+        if (token) {
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                setUserType(payload.user_type); // Set the userType based on the token
+            } catch (error) {
+                console.error("Invalid token format", error);
+                setUserType(null);
+            }
+        }
     }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         setIsAuthenticated(false);
+        setUserType(null);
     };
 
     return (
@@ -45,7 +65,7 @@ function App() {
                         path="/login"
                         element={
                             isAuthenticated ? (
-                                <Navigate to="/overview" /> 
+                                <Navigate to={userType === 'brand' ? '/overview' : '/InfluencerDashboard/Account'} />
                             ) : (
                                 <LoginPage setIsAuthenticated={setIsAuthenticated} />
                             )
@@ -55,30 +75,28 @@ function App() {
                         path="/signup"
                         element={
                             isAuthenticated ? (
-                                <Navigate to="/overview" />
+                                <Navigate to={userType === 'brand' ? '/overview' : '/InfluencerDashboard/Account'} />
                             ) : (
                                 <SignUpPage />
                             )
                         }
                     />
+
+                    {/* Protected Routes */}
                     <Route
                         path="/brand-settings"
                         element={
-                            isAuthenticated ? (
+                            <ProtectedRoute requiredUserType="brand">
                                 <BrandSettings />
-                            ) : (
-                                <Navigate to="/login" />
-                            )
+                            </ProtectedRoute>
                         }
                     />
                     <Route
                         path="/influencer-settings"
                         element={
-                            isAuthenticated ? (
+                            <ProtectedRoute requiredUserType="influencer">
                                 <InfluencerSettings />
-                            ) : (
-                                <Navigate to="/login" />
-                            )
+                            </ProtectedRoute>
                         }
                     />
                     <Route
@@ -94,11 +112,9 @@ function App() {
                     <Route
                         path="/overview"
                         element={
-                            isAuthenticated ? (
-                                <OverviewPage /> 
-                            ) : (
-                                <Navigate to="/login" />
-                            )
+                            <ProtectedRoute requiredUserType="brand">
+                                <OverviewPage />
+                            </ProtectedRoute>
                         }
                     />
                     <Route
@@ -115,9 +131,9 @@ function App() {
                         path="/campaigns"
                         element={
                             isAuthenticated ? (
-                                <Campaign /> // Make sure this matches your Campaign component import
+                                <Campaign />
                             ) : (
-                                <Navigate to="/" /> // Redirects to the homepage if not authenticated
+                                <Navigate to="/" />
                             )
                         }
                     />
@@ -125,11 +141,45 @@ function App() {
                         path="/influencer-brand-dashboard"
                         element={
                             isAuthenticated ? (
-                                <InfluencerBrandDashboard /> // New route for InfluencerBrandDashboard
+                                <InfluencerBrandDashboard />
                             ) : (
-                                <Navigate to="/login" /> // Redirects to the login page if not authenticated
+                                <Navigate to="/login" />
                             )
                         }
+                    />
+                    <Route
+                        path="/marketplace"
+                        element={
+                            isAuthenticated ? (
+                                <Marketplace />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/InfluencerDashboard/Account"
+                        element={
+                            <ProtectedRoute requiredUserType="influencer">
+                                <InfluencerAccountPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+    path="/InfluencerDashboard/settings"
+    element={
+        <ProtectedRoute requiredUserType="influencer">
+            <InfluencerSettingsPage />
+        </ProtectedRoute>
+    }
+/>
+                    <Route
+                        path="/legal/terms"
+                        element={<TermsAndConditions />}
+                    />
+                    <Route
+                        path="/legal/privacy"
+                        element={<PrivatePolicy />}
                     />
                 </Routes>
             </div>

@@ -5,7 +5,7 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
     const [formData, setFormData] = useState({
         productName: '',
         campaignType: '',
-        price: '',
+        price: '$0.00',
         endDate: '',
         category: '',
         audience: '',
@@ -15,25 +15,48 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
         productImage: '',
         productDescription: '',
     });
+    
+    const [errors, setErrors] = useState({
+        productName: '',
+        campaignType: '',
+        price: '',
+        endDate: '',
+        category: '',
+        audience: '',
+        feeModel: '',
+        startingRate: '',
+        productImage: '',
+        productDescription: '',
+    });
+    
+    
 
     const [activeTab, setActiveTab] = useState('summary'); // Track active tab
     const [errorMessage, setErrorMessage] = useState('');  // Store validation errors
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
-
-        if (name === 'feeModel') {
-            let startingRate = '';
-            if (value === 'Commission') {
-                startingRate = ''; // Clear the starting rate for commission
-            } else if (value === 'Flat Rate') {
-                startingRate = 0; // Default to 0 for flat rate
+    
+        if (name === 'price') {
+            // Allow only numeric characters and a single decimal point
+            let numericValue = value.replace(/[^0-9.]/g, ''); // Remove any non-numeric character except '.'
+        
+            // Prevent leading zeros unless the value is a decimal like '0.xx'
+            if (numericValue.length > 1 && numericValue.startsWith('0') && numericValue[1] !== '.') {
+                numericValue = numericValue.replace(/^0+/, ''); // Remove leading zeros if not a decimal
             }
-
+        
+            // Ensure a valid format with only one decimal point
+            if (numericValue.split('.').length > 2) {
+                numericValue = numericValue.slice(0, -1);
+            }
+        
+            // Prepend the dollar sign and ensure the format
+            const formattedPrice = `$${numericValue}`;
+        
             setFormData((prevData) => ({
                 ...prevData,
-                feeModel: value,
-                startingRate, // Reset the starting rate when fee model changes
+                price: formattedPrice,
             }));
         } else {
             setFormData((prevData) => ({
@@ -43,10 +66,11 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
         }
     };
     
+    
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // Validation checks
         const {
             productName,
             campaignType,
@@ -60,20 +84,44 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
             productDescription,
         } = formData;
     
-        if (
-            !productName ||
-            !campaignType ||
-            !price ||
-            !endDate ||
-            !category ||
-            !audience ||
-            !feeModel ||
-            !startingRate ||
-            !productImage ||
-            !productDescription // New validation for Product Description
-        ) {
-            setErrorMessage('Please fill out all fields before submitting, including the product description.');
-            return; // Prevent form submission if any field is empty
+        let validationErrors = {};
+    
+        // Check if all fields are filled in
+        if (!productName) validationErrors.productName = 'Please enter the product name';
+        if (!campaignType) validationErrors.campaignType = 'Please select the campaign type';
+        if (!price || parseFloat(price.replace(/[^0-9.]/g, '')) < 0.01) {
+            validationErrors.price = 'Price must be at least $0.01';
+        } else if (parseFloat(price.replace(/[^0-9.]/g, '')) > 10000) {
+            validationErrors.price = 'Price cannot exceed $10,000';
+        }
+        if (!endDate) validationErrors.endDate = 'Please select an end date';
+        if (!category) validationErrors.category = 'Please select a category';
+        if (!audience) validationErrors.audience = 'Please select an audience';
+        if (!feeModel) validationErrors.feeModel = 'Please select a fee model';
+    
+        // Validate starting rate based on fee model
+        if (feeModel === 'Flat Rate') {
+            const startingRateValue = parseFloat(startingRate.replace(/[^0-9.]/g, ''));
+            if (!startingRate || startingRateValue < 0.01) {
+                validationErrors.startingRate = 'Flat Rate must be at least $0.01';
+            } else if (startingRateValue > 10000) {
+                validationErrors.startingRate = 'Flat Rate cannot exceed $10,000';
+            }
+        } else if (feeModel === 'Commission') {
+            const commissionValue = parseFloat(startingRate.replace(/[^0-9.]/g, ''));
+            if (!startingRate || commissionValue < 1 || commissionValue > 100) {
+                validationErrors.startingRate = 'Commission must be between 1.00% and 100.00%';
+            }
+        }
+    
+        if (!productImage) validationErrors.productImage = 'Please upload a product image';
+        if (!productDescription) validationErrors.productDescription = 'Please enter a product description';
+    
+        setErrors(validationErrors);
+    
+        // If there are validation errors, stop form submission
+        if (Object.keys(validationErrors).length > 0) {
+            return;
         }
     
         // Clear error message if all fields are filled
@@ -89,17 +137,17 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
                     'Authorization': `Bearer ${token}`, // Send token in Authorization header
                 },
                 body: JSON.stringify({
-                    productName: formData.productName,
-                    campaignType: formData.campaignType,
-                    price: parseFloat(formData.price), // Ensure price is a valid number
-                    endDate: formData.endDate,
-                    category: formData.category,
-                    audience: formData.audience,
-                    feeModel: formData.feeModel,
-                    startingRate: formData.startingRate.replace(/[^0-9.]/g, ''), // Remove symbols like $ and %
+                    productName,
+                    campaignType,
+                    price: parseFloat(price.replace(/[^0-9.]/g, '')), // Ensure price is a valid number
+                    endDate,
+                    category,
+                    audience,
+                    feeModel,
+                    startingRate: parseFloat(startingRate.replace(/[^0-9.]/g, '')), // Store as number without special characters
                     isNegotiable: formData.isNegotiable,
-                    productImage: formData.productImage, // Assuming this is the URL to the uploaded image
-                    productDescription: formData.productDescription, // Include product description in the request
+                    productImage,
+                    productDescription,
                 }),
             });
     
@@ -110,17 +158,17 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
                 // Add the new campaign to the list
                 addNewCampaign({
                     id: result.campaignId,
-                    product_name: formData.productName,
-                    campaign_type: formData.campaignType,
-                    price: `$${formData.price}`,
-                    end_date: formData.endDate,
-                    category: formData.category,
-                    audience: formData.audience,
-                    fee_model: formData.feeModel,
-                    starting_rate: formData.startingRate,
+                    product_name: productName,
+                    campaign_type: campaignType,
+                    price: `$${price}`,
+                    end_date: endDate,
+                    category,
+                    audience,
+                    fee_model: feeModel,
+                    starting_rate: startingRate,
                     negotiable: formData.isNegotiable,
-                    product_image: formData.productImage,
-                    product_description: formData.productDescription,
+                    product_image: productImage,
+                    product_description: productDescription,
                 });
     
                 onClose(); // Close the modal after submission
@@ -131,6 +179,9 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
             console.error('Error creating campaign:', err);
         }
     };
+    
+    
+    
     
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -145,39 +196,23 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
     };
 
     const handleStartingRateChange = (e) => {
-        const { value } = e.target;
-
-        // Function to remove leading zeros
-        const removeLeadingZeros = (num) => {
-            return num.replace(/^0+(?=\d)/, ''); // Remove leading zeros but keep decimal like 0.5
-        };
-
-        // For "Flat Rate," allow digits and a single decimal point after the $ symbol
-        if (formData.feeModel === 'Flat Rate') {
-            let numericValue = value.replace(/[^0-9.]/g, ''); // Allow digits and '.'
-            numericValue = removeLeadingZeros(numericValue); // Remove leading zeros
-
-            const formattedValue = numericValue.split('.').length > 2 ? numericValue.slice(0, -1) : numericValue;
-
-            setFormData((prevData) => ({
-                ...prevData,
-                startingRate: `$${formattedValue}`, // Ensure $ is always at the start
-            }));
+        let { value } = e.target;
+    
+        // Ensure the dollar sign is always present
+        value = value.replace(/[^0-9.]/g, ''); // Remove non-numeric characters except '.'
+        if (value.split('.').length > 2) {
+            // Remove additional decimal points if more than one exists
+            value = value.slice(0, -1);
         }
-
-        // For "Commission," allow digits and decimal points and add % at the end
-        if (formData.feeModel === 'Commission') {
-            let numericValue = value.replace(/[^0-9.]/g, ''); // Allow digits and '.'
-            numericValue = removeLeadingZeros(numericValue); // Remove leading zeros
-
-            const formattedValue = numericValue.split('.').length > 2 ? numericValue.slice(0, -1) : numericValue;
-
-            setFormData((prevData) => ({
-                ...prevData,
-                startingRate: formattedValue ? `${formattedValue}%` : '', // Add % symbol after the digits
-            }));
-        }
+    
+        // Prepend the dollar sign
+        setFormData((prevData) => ({
+            ...prevData,
+            startingRate: `$${value}`,
+        }));
     };
+    
+    
 
     if (!isOpen) return null;
 
@@ -217,64 +252,109 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
                                     placeholder="Enter product name"
                                     value={formData.productName}
                                     onChange={handleInputChange}
+                                    style={{
+                                        borderColor: errors.productName ? 'red' : '#ccc', // Highlight border if there's an error
+                                    }}
                                 />
+                                {errors.productName && (
+                                    <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.productName}</p>
+                                )}
                             </div>
                             <div className="form-group-half">
-                                <label>Campaign Type</label>
-                                <select
-                                    name="campaignType"
-                                    value={formData.campaignType}
-                                    onChange={handleInputChange}
-                                >
-                                    <option value="">Select campaign type</option>
-                                    <option value="Livestream">Livestream</option>
-                                    <option value="Short Video">Short Video</option>
-                                </select>
-                            </div>
-                            <div className="form-group-half">
-                                <label>Price (USD)</label>
-                                <input
-                                    type="number"
-                                    name="price"
-                                    placeholder="Enter price"
-                                    value={formData.price}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                            <div className="form-group-half">
-                                <label>End Date</label>
-                                <input
-                                    type="date"
-                                    name="endDate"
-                                    placeholder="Select end date"
-                                    value={formData.endDate}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                            <div className="form-group-half">
-                                <label>Category</label>
-                                <select
-                                    name="category"
-                                    value={formData.category}
-                                    onChange={handleInputChange}
-                                >
-                                    <option value="">Select category</option>
-                                    <option value="Beauty">Beauty</option>
-                                    <option value="Tech">Tech</option>
-                                </select>
-                            </div>
-                            <div className="form-group-half">
-                                <label>Audience</label>
-                                <select
-                                    name="audience"
-                                    value={formData.audience}
-                                    onChange={handleInputChange}
-                                >
-                                    <option value="">Select audience</option>
-                                    <option value="General">General</option>
-                                    <option value="Specific">Specific</option>
-                                </select>
-                            </div>
+    <label>Campaign Type</label>
+    <select
+        name="campaignType"
+        value={formData.campaignType}
+        onChange={handleInputChange}
+        style={{
+            borderColor: errors.campaignType ? 'red' : '#ccc', // Highlight border if there's an error
+        }}
+    >
+        <option value="">Select campaign type</option>
+        <option value="Livestream">Livestream</option>
+        <option value="Short Video">Short Video</option>
+    </select>
+    {errors.campaignType && (
+        <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.campaignType}</p>
+    )}
+</div>
+
+<div className="form-group-half">
+    <label>Price (USD)</label>
+    <input
+        type="text"
+        name="price"
+        placeholder="$0.01"
+        value={formData.price}
+        onChange={handleInputChange}
+        style={{
+            borderColor: errors.price ? 'red' : '#ccc', // Highlight border if there's an error
+        }}
+    />
+    {errors.price && (
+        <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.price}</p>
+    )}
+</div>
+
+
+
+<div className="form-group-half">
+    <label>End Date</label>
+    <input
+        type="date"
+        name="endDate"
+        min={new Date().toISOString().split('T')[0]}  // Setting min to today
+        placeholder="Select end date"
+        value={formData.endDate}
+        onChange={handleInputChange}
+        style={{
+            borderColor: errors.endDate ? 'red' : '#ccc', // Highlight border if there's an error
+        }}
+    />
+    {errors.endDate && (
+        <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.endDate}</p>
+    )}
+</div>
+
+
+<div className="form-group-half">
+    <label>Category</label>
+    <select
+        name="category"
+        value={formData.category}
+        onChange={handleInputChange}
+        style={{
+            borderColor: errors.category ? 'red' : '#ccc', // Highlight border if there's an error
+        }}
+    >
+        <option value="">Select category</option>
+        <option value="Beauty">Beauty</option>
+        <option value="Tech">Tech</option>
+    </select>
+    {errors.category && (
+        <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.category}</p>
+    )}
+</div>
+
+<div className="form-group-half">
+    <label>Audience</label>
+    <select
+        name="audience"
+        value={formData.audience}
+        onChange={handleInputChange}
+        style={{
+            borderColor: errors.audience ? 'red' : '#ccc', // Highlight border if there's an error
+        }}
+    >
+        <option value="">Select audience</option>
+        <option value="General">General</option>
+        <option value="Specific">Specific</option>
+    </select>
+    {errors.audience && (
+        <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.audience}</p>
+    )}
+</div>
+
                             <div className="form-group-half">
                                 <label>Fee Model</label>
                                 <select
@@ -288,21 +368,27 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
                                 </select>
                             </div>
                             <div className="form-group-half">
-                                <label>Starting Rate</label>
-                                <div className="starting-rate-container">
-                                    <input
-                                        type="text"
-                                        name="startingRate"
-                                        placeholder={formData.feeModel === 'Flat Rate' ? '$0' : 'Enter percentage'}
-                                        value={formData.startingRate}
-                                        onChange={handleStartingRateChange}
-                                        disabled={!formData.feeModel}
-                                        style={{
-                                            backgroundColor: !formData.feeModel ? '#e0e0e0' : '#fff',
-                                        }}
-                                    />
-                                </div>
-                            </div>
+    <label>Starting Rate</label>
+    <div className="starting-rate-container">
+        <input
+            type="text"
+            name="startingRate"
+            placeholder={formData.feeModel === 'Flat Rate' ? 'Enter flat rate' : 'Enter percentage'}
+            value={formData.startingRate}
+            onChange={handleStartingRateChange}
+            disabled={!formData.feeModel}
+            style={{
+                backgroundColor: !formData.feeModel ? '#e0e0e0' : '#fff',
+                borderColor: errors.startingRate ? 'red' : '#ccc', // Highlight border if there's an error
+            }}
+        />
+        {errors.startingRate && (
+            <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.startingRate}</p>
+        )}
+    </div>
+</div>
+
+
                         </div>
 
                         {/* Move upload image below form fields and above the checkbox */}
@@ -350,7 +436,13 @@ const NewCampaignPopUp = ({ isOpen, onClose, addNewCampaign }) => {
                             placeholder="Write the product description"
                             value={formData.productDescription}
                             onChange={handleInputChange}
+                            style={{
+                                borderColor: errors.productDescription ? 'red' : '#ccc', // Highlight border if there's an error
+                            }}
                         />
+                        {errors.productDescription && (
+                            <p style={{ color: 'red', fontSize: '0.8em' }}>{errors.productDescription}</p>
+                        )}
                         <button type="submit" className="submit-button">Save</button>
                     </div>
                 )}

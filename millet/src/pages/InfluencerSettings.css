@@ -4,47 +4,45 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Add space between the main sections */
+    gap: 20px; /* Space between main sections */
+    border-radius: 8px;
 }
 
 .settings-form {
-    display: flex; /* This ensures the items inside are aligned side by side */
-    flex-direction: row; /* Ensure the direction is set to row */
-    justify-content: space-between; /* Space between items */
-    gap: 20px; /* Space between each card */
-    width: 100%; /* Make sure the form takes full width */
-    align-items: flex-start; /* Align items to the top */
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    gap: 20px; 
+    width: 100%; 
+    align-items: flex-start; 
 }
 
-.details-section {
+.details-section, .interests-section {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Slightly deeper shadow for emphasis */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: calc(50% - 20px); /* Adjust width to allow for spacing */
-    max-width: 48%; /* Ensure they don't exceed the available width */
+    width: calc(50% - 20px); 
+    max-width: 48%; 
+    flex: 1; /* Ensures both sections grow to the same height */
 }
 
-.upload-section {
+.upload-section, .video-upload-section {
     display: flex;
     flex-direction: column;
-    align-items: center; /* This should center both the photo and the button */
+    align-items: center; 
     margin-bottom: 15px;
 }
 
-.change-button {
-    margin-top: 10px; /* Space between the photo and the button */
-    display: block; /* Ensure the button takes up its own line */
-    justify-content: center; /* Center the text within the button */
-    align-items: center;
+.video-upload-section label {
+    margin-bottom: 8px; /* Consistent spacing */
 }
 
-
-.upload-photo {
+.upload-photo, .upload-video {
     width: 60px;
     height: 60px;
     background: #f3f3f3;
@@ -57,40 +55,61 @@
     text-align: center;
 }
 
-.upload-video-section label {
-    margin-bottom: 5px; /* Adds space between "Intro video" label and input box */
+.change-button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.change-button:hover {
+    background-color: #333;
 }
 
 .influencer-settings-container input[type="text"],
 .influencer-settings-container input[type="file"],
 .influencer-settings-container textarea {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 12px; 
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.influencer-settings-container input[type="text"]:focus,
+.influencer-settings-container input[type="file"]:focus,
+.influencer-settings-container textarea:focus {
+    border-color: #999; /* Highlight focus state */
+    outline: none;
 }
 
 textarea {
-    height: 80px; 
+    height: 100px; /* Adjust height for better usability */
     resize: none;
 }
 
+/* Updated styles for Campaign types and categories */
 .checkbox-section {
-    margin-bottom: 15px;
+    border: none; /* Remove background and border */
+    padding-top: 10px; /* Add padding under Campaign types and categories text */
 }
 
 .checkbox-section label {
-    font-weight: normal; /* Changed from bold to normal */
     display: block;
     margin-bottom: 8px;
+    padding-bottom: 8px; /* Adds spacing below the header text */
 }
 
 .checkbox-section div {
     display: flex;
-    flex-direction: column; /* Stack the items vertically */
-    gap: 8px; /* Space between the items */
+    flex-direction: column; 
+    gap: 8px; 
 }
 
 .checkbox-section label input {
@@ -101,4 +120,27 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 20px; /* Ensure space from other elements */
+}
+
+.save-button {
+    padding: 12px 24px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-button:hover {
+    background-color: #444;
+    transform: scale(1.02); /* Slight pop effect on hover */
+}
+
+.save-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

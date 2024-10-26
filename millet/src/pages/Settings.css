@@ -1,143 +1,153 @@
-.settings-page .settings-container {
-    display: flex;
-    height: 100vh; 
+/* Main Container for the Settings page */
+.settings-wrapper {
+    display: flex; /* Flex to position sidebar and main content */
 }
 
-.settings-page .sidebar {
-    background-color: #f0f0f0;
-    width: 250px;
-    padding: 20px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Settings Content Container */
+.settings-content {
+    max-width: 1200px; /* Match Overview page's width */
+    margin: 0 auto; /* Center content */
+    padding: 20px; /* Same padding as Overview */
 }
 
-.settings-page .main-content {
-    flex: 1;
-    margin-left: 250px; /* Sidebar width */
-    padding: 60px; /* Increased padding to push down content */
-    padding-top: 80px; /* Additional top padding for visibility */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
+/* Settings Page Title */
+.settings-content h1 {
+    font-size: 36px; /* Match Overview */
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 20px; /* Match Overview */
 }
 
-.settings-page .profile-icon {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
+/* Subtext for Settings Page */
+.settings-content p {
+    font-size: 16px; /* Match Overview */
+    color: #616161;
+    margin-bottom: 40px;
+    font-weight: 500;
 }
 
-.settings-page .dropdown-menu {
-    position: absolute;
-    top: 60px;
-    right: 20px;
+/* Flexbox container for the cards */
+.cards-container {
+    display: flex; /* Flexbox for side-by-side layout */
+    justify-content: space-between; /* Space between the two cards */
+    gap: 20px; /* Add space between the cards */
+    flex-wrap: wrap; /* Ensure responsiveness on smaller screens */
+}
+
+/* Styling for cards on the Settings page */
+.card {
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    z-index: 100;
-}
-
-.settings-page .dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.settings-page .dropdown-menu ul li {
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.settings-page .dropdown-menu ul li:hover {
-    background-color: #f0f0f0;
-}
-
-.settings-page .logout-button {
-    background: none;
-    border: none;
-    color: #ff0000;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-}
-
-.settings-page .logout-button:hover {
-    background-color: #ffffff;
-}
-
-.settings-page .settings-heading {
-    font-size: 28px; /* Match OverviewPage heading size */
-    margin-bottom: 20px; /* Add bottom margin */
-    margin-top: 0; /* Remove any top margin */
-    color: #000;
-    text-align: left; /* Align left to match OverviewPage */
-}
-
-
-.settings-page .settings-subheading {
-    font-size: 18px;
-    margin-bottom: 20px; /* Reduce margin to match OverviewPage */
-    color: #555;
-    text-align: left; /* Align left */
-}
-
-.settings-page .settings-form {
+    border-radius: 12px;
+    padding: 32px; /* Increased padding for a more spacious feel */
+    margin-bottom: 20px; /* Space between cards */
+    max-width: 480px; /* Limit card width */
     width: 100%;
-    max-width: 1100px;
-    display: flex;
-    justify-content: space-between;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    flex-grow: 1; /* Allow cards to grow and maintain equal width */
 }
 
-.settings-page .details-section {
-    background-color: #fff;
-    padding: 20px;
+/* Card Titles */
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Text under card titles */
+.card p {
+    font-size: 14px;
+    color: #616161;
     margin-bottom: 20px;
-    border-radius: 8px;
-    width: 48%;
+    font-weight: 500;
 }
 
-.settings-page .input-group {
+/* Input group to wrap label and input elements */
+.input-group {
     margin-bottom: 15px;
 }
 
-.settings-page .input-group label {
+/* Label styling for form inputs */
+.input-group label {
     display: block;
-    font-weight: bold;
+    font-size: 14px;
     margin-bottom: 5px;
+    font-weight: 500;
+    color: #616161;
 }
 
-.settings-page .input-group input,
-.settings-page .input-group textarea,
-.settings-page .styled-select {
+/* Input and Textarea styles */
+.input-group input,
+.input-group textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    background-color: #f9f9f9;
+    outline: none;
 }
 
-.settings-page .save-button-container {
-    text-align: center;
-    margin-top: 20px;
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #000; /* Darker border on focus */
 }
 
-.settings-page .save-button {
+/* Save button styling */
+.save-btn {
     background-color: #000;
     color: #fff;
-    padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    padding: 12px 20px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
-.settings-page .save-button:hover {
+.save-btn:hover {
+    background-color: #333; /* Darker button color on hover */
+}
+
+/* Card styling */
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 20px;
+    max-width: 480px;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Ensure the button stays at the bottom */
+    justify-content: space-between; /* Ensure content fills the card, and the button is at the bottom */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styling for Edit/Save button */
+.edit-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    align-self: flex-start; /* Ensure it stays to the left */
+}
+
+.edit-btn:hover {
     background-color: #333;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column; /* Stack cards on smaller screens */
+    }
 }
